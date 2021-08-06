@@ -1,7 +1,13 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class Enfermedad {
+namespace xmedical_ehr.Models
+{
+    public class Enfermedad
+    {
+        public Enfermedad()
+        {
+            Diagnosticos = new HashSet<Diagnostico>();
+        }
         public string Id { get; set; }
         public string Catalogo { get; set; }
         public string Codigo { get; set; }

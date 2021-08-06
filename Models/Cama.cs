@@ -1,7 +1,13 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class Cama {
+namespace xmedical_ehr.Models
+{
+    public class Cama
+    {
+        public Cama()
+        {
+            Atenciones = new HashSet<AtencionMedica>();
+        }
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public int HabitacionId { get; set; }

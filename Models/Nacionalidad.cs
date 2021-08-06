@@ -1,12 +1,20 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class Nacionalidad {
+namespace xmedical_ehr.Models
+{
+    public class Nacionalidad
+    {
+        public Nacionalidad()
+        {
+            Pacientes = new HashSet<Paciente>();
+        }
+        
         public string Id { get; set; }
         public string Descripcion { get; set; }
         public string CodigoInt { get; set; }
 
-        // Navigations
+
+        // Navigation properties
         public virtual ICollection<Paciente> Pacientes { get; set; }
     }
 }

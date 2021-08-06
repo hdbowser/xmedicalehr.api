@@ -1,5 +1,7 @@
-namespace xmedical_ehr.Models {
-    public class AlergiaPaciente {
+namespace xmedical_ehr.Models
+{
+    public class AlergiaPaciente
+    {
         public string PacienteId { get; set; }
         public int SustanciaId { get; set; }
         public string Comentario { get; set; }

@@ -1,6 +1,8 @@
 using System;
-namespace xmedical_ehr.Models {
-    public class Medicacion {
+namespace xmedical_ehr.Models
+{
+    public class Medicacion
+    {
         public string AtencionId { get; set; }
         public int NumItem { get; set; }
         public string NotaEnfermeriaId { get; set; }
@@ -14,7 +16,9 @@ namespace xmedical_ehr.Models {
         public string Deleted { get; set; }
         public DateTime DeletedAt { get; set; }
 
-        // Navigations
+
+        // Navigation properties
+        public virtual AtencionMedica AtencionMedica { get; set; }
         public virtual NotaEnfermeria NotaEnfermeria { get; set; }
         public virtual Medicamento Medicamento { get; set; }
     }

@@ -1,34 +1,65 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedical_ehr.Models;
-namespace xmedical_ehr.Data.Configurations {
-    public class MedicacionConfiguration : IEntityTypeConfiguration<Medicacion> {
-        public void Configure (EntityTypeBuilder<Medicacion> builder) {
-            builder.Property (x => x.NotaEnfermeriaId)
-                .HasColumnType ("varchar(255)");
-            builder.Property (x => x.MedicamentoId)
-                .HasColumnType ("varchar(45)")
-                .IsRequired ();
-            builder.Property (x => x.Unidad)
-                .HasColumnType ("varchar(25)");
-            builder.Property (x => x.Via)
-                .HasColumnType ("varchar(45)");
-            builder.Property (x => x.Comentario)
-                .HasColumnType ("varchar(250)");
-            builder.Property (x => x.Deleted)
-                .HasColumnType ("tinyint(1)");
-            builder.Property (x => x.CreatedBy)
-                .HasColumnType ("varchar(255)");
+namespace xmedical_ehr.Data.Configurations
+{
+    public class MedicacionConfiguration : IEntityTypeConfiguration<Medicacion>
+    {
+        public void Configure(EntityTypeBuilder<Medicacion> builder)
+        {
+            builder.HasKey(x => new {x.AtencionId, x.NotaEnfermeriaId, x.NumItem })
+                .HasName("PRIMARY");
 
-            builder.HasKey (x => new { x.NotaEnfermeriaId, x.NumItem });
+            builder.Property(x => x.AtencionId)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.NumItem)
+                .HasColumnType("int");
+            
+            builder.Property(x => x.NotaEnfermeriaId)
+                .HasColumnType("varchar(255)");
 
-            builder.HasOne (x => x.NotaEnfermeria)
-                .WithMany (ne => ne.Medicaciones)
-                .HasForeignKey (x => x.NotaEnfermeriaId);
+            builder.Property(x => x.MedicamentoId)
+                .HasColumnType("varchar(45)");
+            
+            builder.Property(x => x.Cantidad)
+                .HasColumnType("int");
 
-            builder.HasOne (x => x.Medicamento)
-                .WithMany (ne => ne.Medicaciones)
-                .HasForeignKey (x => x.MedicamentoId);
+            builder.Property(x => x.Unidad)
+                .HasColumnType("varchar(25)");
+
+            builder.Property(x => x.Via)
+                .HasColumnType("varchar(45)");
+
+            builder.Property(x => x.Comentario)
+                .HasColumnType("varchar(250)");
+
+            builder.Property(x => x.CreatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.CreatedAt)
+                .HasColumnType("datetime");
+
+            builder.Property(x => x.Deleted)
+                .HasColumnType("tinyint(1)");
+            
+            builder.Property(x => x.DeletedAt)
+                .HasColumnType("datetime");
+            
+            builder.HasOne(x => x.AtencionMedica)
+                .WithMany(ne => ne.Medicaciones)
+                .HasForeignKey(x => x.AtencionId)
+                .HasConstraintName("FK_Medicacion_AtencionesMedicas");
+
+            builder.HasOne(x => x.NotaEnfermeria)
+                .WithMany(ne => ne.Medicaciones)
+                .HasForeignKey(x => x.NotaEnfermeriaId)
+                .HasConstraintName("FK_Medicacion_NotasEnfemeria");
+
+            builder.HasOne(x => x.Medicamento)
+                .WithMany(ne => ne.Medicaciones)
+                .HasForeignKey(x => x.MedicamentoId)
+                .HasConstraintName("FK_Medicacion_Medicamentos");
         }
     }
 }

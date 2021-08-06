@@ -1,7 +1,9 @@
 using System;
 
-namespace xmedical_ehr.Models {
-    public class AntecedentePaciente {
+namespace xmedical_ehr.Models
+{
+    public class AntecedentePaciente
+    {
         public string PacienteId { get; set; }
         public int TipoAntecedenteId { get; set; }
         public string Detalle { get; set; }

@@ -16,33 +16,41 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using xmedical_ehr.Account;
 using xmedical_ehr.Data;
 
-namespace xmedical_ehr {
-    public class Startup {
-        public Startup (IConfiguration configuration) {
+namespace xmedical_ehr
+{
+    public class Startup
+    {
+        public Startup(IConfiguration configuration)
+        {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services) {
-            string connectionString = Configuration.GetConnectionString ("DefaultConnection");
+        public void ConfigureServices(IServiceCollection services)
+        {
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddControllers ();
-            services.AddDbContext<AppDbContext> (options => {
-                options.UseMySql (connectionString, serverVersion : ServerVersion.AutoDetect (connectionString), x => {
-                    x.CharSet (CharSet.Utf8Mb4);
-                    x.CharSetBehavior (CharSetBehavior.AppendToAllColumns);
+            services.AddControllers();
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                options.UseMySql(connectionString, serverVersion: ServerVersion.AutoDetect(connectionString), x =>
+                {
+                    x.CharSet(CharSet.Utf8Mb4);
+                    x.CharSetBehavior(CharSetBehavior.AppendToAllColumns);
                 });
             });
 
-            services.AddIdentity<User, Role> (options => {
-                    options.SignIn.RequireConfirmedAccount = false;
-                })
-                .AddEntityFrameworkStores<AppDbContext> ()
-                .AddDefaultTokenProviders ();
+            services.AddIdentity<User, Role>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+            })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
-            services.Configure<IdentityOptions> (options => {
+            services.Configure<IdentityOptions>(options =>
+            {
                 // Password settings.
                 options.Password.RequireDigit = true;
                 options.Password.RequireLowercase = false;
@@ -52,7 +60,7 @@ namespace xmedical_ehr {
                 options.Password.RequiredUniqueChars = 1;
 
                 // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes (5);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 
@@ -64,19 +72,22 @@ namespace xmedical_ehr {
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
-            if (env.IsDevelopment ()) {
-                app.UseDeveloperExceptionPage ();
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection ();
+            app.UseHttpsRedirection();
 
-            app.UseRouting ();
+            app.UseRouting();
 
-            app.UseAuthorization ();
+            app.UseAuthorization();
 
-            app.UseEndpoints (endpoints => {
-                endpoints.MapControllers ();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
         }
     }

@@ -12,7 +12,7 @@ namespace xmedical_ehr.Models {
         public int FrecuenciaRespiratoria { get; set; }
         public int FrecuenciaCardiaca { get; set; }
         public int PresionSistolica { get; set; }
-        public int PresionDisatolica { get; set; }
+        public int PresionDiastolica { get; set; }
         public decimal Diuresis { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool Deleted { get; set; }

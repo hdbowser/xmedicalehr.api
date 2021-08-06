@@ -1,5 +1,7 @@
-namespace xmedical_ehr.Models {
-    public class ExploracionItem {
+namespace xmedical_ehr.Models
+{
+    public class ExploracionItem
+    {
         public string NotaMedicaId { get; set; }
         public int ExploracionItemTemplateId { get; set; }
         public string Descripcion { get; set; }

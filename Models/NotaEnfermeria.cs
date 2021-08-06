@@ -2,8 +2,15 @@ using System;
 using System.Collections.Generic;
 using xmedical_ehr.Account;
 
-namespace xmedical_ehr.Models {
-    public class NotaEnfermeria {
+namespace xmedical_ehr.Models
+{
+    public class NotaEnfermeria
+    {
+        public NotaEnfermeria()
+        {
+            SignosVitales = new HashSet<SignosVitales>();
+            Medicaciones = new HashSet<Medicacion>();
+        }
         public string Id { get; set; }
         public string AtencionId { get; set; }
         public string HabitusExterior { get; set; }
@@ -17,9 +24,9 @@ namespace xmedical_ehr.Models {
         public DateTime DeletedAt { get; set; }
 
         // Navigations
-        public virtual ICollection<SignosVitales> SignosVitales { get; set; }
         public virtual AtencionMedica AtencionMedica { get; set; }
         public virtual User Enfermera { get; set; }
+        public virtual ICollection<SignosVitales> SignosVitales { get; set; }
         public ICollection<Medicacion> Medicaciones { get; set; }
     }
 }

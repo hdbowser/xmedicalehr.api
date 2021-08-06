@@ -5,8 +5,10 @@ using xmedical_ehr.Data.Configurations;
 using xmedical_ehr.Data.Migrations.Configurations;
 using xmedical_ehr.Models;
 
-namespace xmedical_ehr.Data {
-    public class AppDbContext : IdentityDbContext<User, Role, string> {
+namespace xmedical_ehr.Data
+{
+    public class AppDbContext : IdentityDbContext<User, Role, string>
+    {
         public DbSet<AlergiaPaciente> AlergiasPacientes { get; set; }
         public DbSet<AntecedentePaciente> AntecedetesPacientes { get; set; }
         public DbSet<Aseguradora> Aseguradoras { get; set; }
@@ -37,46 +39,47 @@ namespace xmedical_ehr.Data {
         public DbSet<SignosVitales> SignosVitales { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<NotaMedicaCustomField> NotaMedicaCustomFields { get; set; }
-        public AppDbContext (DbContextOptions<AppDbContext> options) : base (options) { }
-        protected override void OnModelCreating (ModelBuilder builder) {
-            builder.ApplyConfiguration (new RoleConfiguration ());
-            builder.ApplyConfiguration (new UserConfiguration ());
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfiguration(new RoleConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
 
-            builder.ApplyConfiguration (new AlergiaPacienteConfiguration ());
-            builder.ApplyConfiguration (new AntecedentePacienteConfiguration ());
-            builder.ApplyConfiguration (new AseguradoraConfiguration ());
-            builder.ApplyConfiguration (new GrupoAntecedenteConfiguration ());
-            builder.ApplyConfiguration (new NacionalidadConfiguration ());
-            builder.ApplyConfiguration (new PacienteConfiguration ());
-            builder.ApplyConfiguration (new PacienteParentescoConfituration ());
-            builder.ApplyConfiguration (new ProvinciaConfiguratoin ());
-            builder.ApplyConfiguration (new SustanciaConfiguration ());
-            builder.ApplyConfiguration (new TipoAntecedenteConfiguration ());
-            builder.ApplyConfiguration (new TipoParentescoConfiguration ());
+            builder.ApplyConfiguration(new AlergiaPacienteConfiguration());
+            builder.ApplyConfiguration(new AntecedentePacienteConfiguration());
+            builder.ApplyConfiguration(new AseguradoraConfiguration());
+            builder.ApplyConfiguration(new GrupoAntecedenteConfiguration());
+            builder.ApplyConfiguration(new NacionalidadConfiguration());
+            builder.ApplyConfiguration(new PacienteConfiguration());
+            builder.ApplyConfiguration(new PacienteParentescoConfituration());
+            builder.ApplyConfiguration(new ProvinciaConfiguratoin());
+            builder.ApplyConfiguration(new SustanciaConfiguration());
+            builder.ApplyConfiguration(new TipoAntecedenteConfiguration());
+            builder.ApplyConfiguration(new TipoParentescoConfiguration());
 
-            builder.ApplyConfiguration (new AtencionMedicaConfiguration ());
-            builder.ApplyConfiguration (new TipoAntencionConfiguration ());
-            builder.ApplyConfiguration (new CamaConfiguration ());
-            builder.ApplyConfiguration (new HabitacionConfiguration ());
-            builder.ApplyConfiguration (new SolicitudInterconsultaConfiguration ());
-            builder.ApplyConfiguration (new DepartamentoConfiguration ());
+            builder.ApplyConfiguration(new AtencionMedicaConfiguration());
+            builder.ApplyConfiguration(new TipoAntencionConfiguration());
+            builder.ApplyConfiguration(new CamaConfiguration());
+            builder.ApplyConfiguration(new HabitacionConfiguration());
+            builder.ApplyConfiguration(new SolicitudInterconsultaConfiguration());
+            builder.ApplyConfiguration(new DepartamentoConfiguration());
 
-            builder.ApplyConfiguration (new EnfermedadConfiguration ());
-            builder.ApplyConfiguration (new ExploracionItemConfiguration ());
-            builder.ApplyConfiguration (new ExploracionItemTemplateConfiguration ());
-            builder.ApplyConfiguration (new MedicacionConfiguration ());
-            builder.ApplyConfiguration (new NotaEnfermeriaConfiguration ());
-            builder.ApplyConfiguration (new OrdenMedicaConfiguration ());
-            builder.ApplyConfiguration (new TipoNotaMedicaConfiguration ());
-            builder.ApplyConfiguration (new DiagnosticoConfiguration ());
-            builder.ApplyConfiguration (new EstudioConfiguration ());
-            builder.ApplyConfiguration (new MedicamentoConfiguration ());
-            builder.ApplyConfiguration (new NotaMedicaConfiguration ());
-            builder.ApplyConfiguration (new SignosVitalesConfiguration ());
-            builder.ApplyConfiguration (new EmpresaConfiguration ());
-            builder.ApplyConfiguration (new NotaMedicaCustomFieldConfiguration ());
+            builder.ApplyConfiguration(new EnfermedadConfiguration());
+            builder.ApplyConfiguration(new ExploracionItemConfiguration());
+            builder.ApplyConfiguration(new ExploracionItemTemplateConfiguration());
+            builder.ApplyConfiguration(new MedicacionConfiguration());
+            builder.ApplyConfiguration(new NotaEnfermeriaConfiguration());
+            builder.ApplyConfiguration(new OrdenMedicaConfiguration());
+            builder.ApplyConfiguration(new TipoNotaMedicaConfiguration());
+            builder.ApplyConfiguration(new DiagnosticoConfiguration());
+            builder.ApplyConfiguration(new EstudioConfiguration());
+            builder.ApplyConfiguration(new MedicamentoConfiguration());
+            builder.ApplyConfiguration(new NotaMedicaConfiguration());
+            builder.ApplyConfiguration(new SignosVitalesConfiguration());
+            builder.ApplyConfiguration(new EmpresaConfiguration());
+            builder.ApplyConfiguration(new NotaMedicaCustomFieldConfiguration());
 
-            base.OnModelCreating (builder);
+            base.OnModelCreating(builder);
         }
     }
 }
