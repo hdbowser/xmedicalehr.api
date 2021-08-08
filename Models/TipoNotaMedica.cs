@@ -1,8 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class TipoNotaMedica{
+namespace xmedical_ehr.Models
+{
+    public class TipoNotaMedica
+    {
+        public TipoNotaMedica()
+        {
+            NotasMedicas = new HashSet<NotaMedica>();
+        }
+        
         public string Id { get; set; }
         public string Descripcion { get; set; }
 

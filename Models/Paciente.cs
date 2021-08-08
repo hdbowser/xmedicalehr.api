@@ -1,8 +1,17 @@
 using System;
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class Paciente {
+namespace xmedical_ehr.Models
+{
+    public class Paciente
+    {
+        public Paciente()
+        {
+            Alergias = new HashSet<AlergiaPaciente>();
+            Antecedentes = new HashSet<AntecedentePaciente>();
+            PacientesParentesco = new HashSet<PacienteParentesco>();
+            Atenciones = new HashSet<AtencionMedica>();
+        }
         public string Id { get; set; }
         public string Nombres { get; set; }
         public string PrimerApellido { get; set; }
@@ -37,8 +46,7 @@ namespace xmedical_ehr.Models {
 
         public virtual ICollection<AlergiaPaciente> Alergias { get; set; }
         public virtual ICollection<AntecedentePaciente> Antecedentes { get; set; }
-        public virtual ICollection<PacienteParentesco> PacientesParentescos { get; set; }
-        public virtual ICollection<PacienteParentesco> ParentescosPacientes { get; set; }
+        public virtual ICollection<PacienteParentesco> PacientesParentesco { get; set; }
         public virtual ICollection<AtencionMedica> Atenciones { get; set; }
     }
 }

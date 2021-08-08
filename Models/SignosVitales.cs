@@ -1,7 +1,9 @@
 using System;
 
-namespace xmedical_ehr.Models {
-    public class SignosVitales {
+namespace xmedical_ehr.Models
+{
+    public class SignosVitales
+    {
         public string AtencionId { get; set; }
         public int NumItem { get; set; }
         public string NotaMedicaId { get; set; }

@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using xmedical_ehr.Models;
 
-namespace xmedical_ehr.Account {
-    public class User : IdentityUser {
+namespace xmedical_ehr.Account
+{
+    public class User : IdentityUser
+    {
+        public User()
+        {
+            // Atenciones = new HashSet<AtencionMedica>();
+            // AtencionesCreadas = new HashSet<>();
+            // SolicitudesInterconsultas = new HashSet<>();
+            // InterconsultasSolicitadas = new HashSet<>();
+            // NotasMedicas = new HashSet<>();
+            // NotasEnfermeria = new HashSet<>();
+            //TODO revisar porque tiene dos colecciones de AtencionMedica
+        }
+
         public string Name { get; set; }
         public string Prefix { get; set; }
 

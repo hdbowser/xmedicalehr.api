@@ -1,9 +1,16 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class TipoAntecedente {
+namespace xmedical_ehr.Models
+{
+    public class TipoAntecedente
+    {
+        public TipoAntecedente()
+        {
+            AntecedentesPacientes = new HashSet<AntecedentePaciente>();
+        }
+        
         public int Id { get; set; }
-        public string Descricion { get; set; }
+        public string Descripcion { get; set; }
         public int GrupoId { get; set; }
 
         // Navigations

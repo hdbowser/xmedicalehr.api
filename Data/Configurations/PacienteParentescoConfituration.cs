@@ -1,37 +1,47 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedical_ehr.Models;
-namespace xmedical_ehr.Data.Configurations {
-    public class PacienteParentescoConfituration : IEntityTypeConfiguration<PacienteParentesco> {
-        public void Configure (EntityTypeBuilder<PacienteParentesco> builder) {
-            builder.Property (x => x.PacienteId)
-                .HasColumnType ("varchar(255)");
-            builder.Property (x => x.ParentescoId)
-                .HasColumnType ("varchar(255)");
-            builder.Property (x => x.Comentario)
-                .HasColumnType ("varchar(200)");
+namespace xmedical_ehr.Data.Configurations
+{
+    public class PacienteParentescoConfituration : IEntityTypeConfiguration<PacienteParentesco>
+    {
+        public void Configure(EntityTypeBuilder<PacienteParentesco> builder)
+        {
+            builder.HasKey(x => new
+            {
+                x.PacienteId,
+                x.TipoParentescoId,
+                x.ParentescoId
+            })
+            .HasName("PRIMARY");
 
-            builder.HasKey (x => new {
-                    x.PacienteId,
-                        x.TipoParentescoId,
-                        x.ParentescoId
-                })
-                .HasName ("PRIMARY");
+            builder.Property(x => x.PacienteId)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.TipoParentescoId)
+                .HasColumnType("int");
 
-            builder.HasOne (x => x.Paciente)
-                .WithMany (p => p.PacientesParentescos)
-                .HasConstraintName ("FK_ParentescoPaciente_Paciente")
-                .HasForeignKey (x => x.PacienteId);
+            builder.Property(x => x.ParentescoId)
+                .HasColumnType("varchar(255)");
 
-            builder.HasOne (x => x.Parentesco)
-                .WithMany (p => p.ParentescosPacientes)
-                .HasConstraintName ("FK_ParentescoPaciente_Parentesco")
-                .HasForeignKey (x => x.ParentescoId);
+            builder.Property(x => x.Comentario)
+                .HasColumnType("varchar(200)");
 
-            builder.HasOne (x => x.TipoParentesco)
-                .WithMany (p => p.PacientesParentescos)
-                .HasConstraintName ("FK_ParentescoPaciente_TipoParentesco")
-                .HasForeignKey (x => x.TipoParentescoId);
+
+            builder.HasOne(x => x.Paciente)
+                .WithMany(p => p.PacientesParentesco)
+                .HasConstraintName("FK_PacientesParentesco_Pacientes")
+                .HasForeignKey(x => x.PacienteId);
+
+            // builder.HasOne(x => x.Parentesco)
+            //     .WithMany(p => p.PacientesParentescos)
+            //     .HasForeignKey(x => x.ParentescoId)
+            //     .HasConstraintName("FK_PacientesParentesco_Parentescos");
+
+            builder.HasOne(x => x.TipoParentesco)
+                .WithMany(p => p.PacientesParentesco)
+                .HasConstraintName("FK_PacientesParentesco_TiposParentesco")
+                .HasForeignKey(x => x.TipoParentescoId);
         }
     }
 }

@@ -1,7 +1,13 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models {
-    public class TipoAtencion {
+namespace xmedical_ehr.Models
+{
+    public class TipoAtencion
+    {
+        public TipoAtencion()
+        {
+            Atenciones = new HashSet<AtencionMedica>();
+        }
         public string Id { get; set; }
         public string Descripcion { get; set; }
 
