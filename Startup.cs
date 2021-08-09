@@ -13,10 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using xmedical_ehr.Account;
-using xmedical_ehr.Data;
+using xmedicalehr.api.Account;
+using xmedicalehr.api.Data;
 
-namespace xmedical_ehr
+namespace xmedicalehr.api
 {
     public class Startup
     {

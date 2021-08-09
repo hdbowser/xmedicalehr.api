@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using xmedical_ehr.Account;
+using xmedicalehr.api.Account;
 
-namespace xmedical_ehr.Data.Migrations.Configurations
+namespace xmedicalehr.api.Data.Migrations.Configurations
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

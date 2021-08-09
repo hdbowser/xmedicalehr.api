@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-using xmedical_ehr.Models;
+using xmedicalehr.api.Models;
 
-namespace xmedical_ehr.Account
+namespace xmedicalehr.api.Account
 {
     public class User : IdentityUser
     {

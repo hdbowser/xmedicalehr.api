@@ -1,5 +1,5 @@
 using System;
-namespace xmedical_ehr.Models
+namespace xmedicalehr.api.Models
 {
     public class Medicacion
     {
@@ -13,7 +13,7 @@ namespace xmedical_ehr.Models
         public string Comentario { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
-        public string Deleted { get; set; }
+        public bool Deleted { get; set; }
         public DateTime DeletedAt { get; set; }
 
 

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using xmedical_ehr.Models;
+using xmedicalehr.api.Models;
 
-namespace xmedical_ehr.Data.Configurations
+namespace xmedicalehr.api.Data.Configurations
 {
     public class AlergiaPacienteConfiguration : IEntityTypeConfiguration<AlergiaPaciente>
     {

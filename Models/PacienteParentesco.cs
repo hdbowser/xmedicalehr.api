@@ -1,4 +1,4 @@
-namespace xmedical_ehr.Models
+namespace xmedicalehr.api.Models
 {
     public class PacienteParentesco
     {
@@ -11,6 +11,6 @@ namespace xmedical_ehr.Models
         public virtual Paciente Paciente { get; set; }
         public virtual TipoParentesco TipoParentesco { get; set; }
         // public virtual Paciente Parentesco { get; set; }
-        //TODO porque tiene dos propiedad de de navegacion del tipo Paciente
+        //TODO porque tiene dos propiedad de navegacion del tipo Paciente
     }
 }

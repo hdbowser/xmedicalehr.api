@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using xmedical_ehr.Account;
+using xmedicalehr.api.Account;
 
-namespace xmedical_ehr.Models
+namespace xmedicalehr.api.Models
 {
     public class NotaEnfermeria
     {
@@ -19,7 +19,7 @@ namespace xmedical_ehr.Models
         public DateTime Fecha { get; set; }
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
-        public string Deleted { get; set; }
+        public bool Deleted { get; set; }
         public string DeletedBy { get; set; }
         public DateTime DeletedAt { get; set; }
 

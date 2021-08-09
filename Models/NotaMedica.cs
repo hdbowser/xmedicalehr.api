@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using xmedical_ehr.Account;
+using xmedicalehr.api.Account;
 
-namespace xmedical_ehr.Models
+namespace xmedicalehr.api.Models
 {
     public class NotaMedica
     {

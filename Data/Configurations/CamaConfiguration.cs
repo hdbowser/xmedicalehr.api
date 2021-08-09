@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using xmedical_ehr.Models;
-namespace xmedical_ehr.Data.Configurations
+using xmedicalehr.api.Models;
+namespace xmedicalehr.api.Data.Configurations
 {
     public class CamaConfiguration : IEntityTypeConfiguration<Cama>
     {

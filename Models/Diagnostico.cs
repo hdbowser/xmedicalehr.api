@@ -1,5 +1,5 @@
 using System;
-namespace xmedical_ehr.Models {
+namespace xmedicalehr.api.Models {
     public class Diagnostico {
         public string NotaMedicaId { get; set; }
         public int NumItem { get; set; }

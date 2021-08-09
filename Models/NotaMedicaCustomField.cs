@@ -1,5 +1,7 @@
-namespace xmedical_ehr.Models {
-    public class NotaMedicaCustomField {
+namespace xmedicalehr.api.Models
+{
+    public class NotaMedicaCustomField
+    {
         public string NotaMedicaId { get; set; }
         public int NumItem { get; set; }
         public string Titulo { get; set; }

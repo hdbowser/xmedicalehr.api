@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using xmedical_ehr.Models;
-namespace xmedical_ehr.Data.Configurations
+using xmedicalehr.api.Models;
+namespace xmedicalehr.api.Data.Configurations
 {
     public class NacionalidadConfiguration : IEntityTypeConfiguration<Nacionalidad>
     {
@@ -11,7 +11,7 @@ namespace xmedical_ehr.Data.Configurations
                 .HasName("PRIMARY");
                 
             builder.Property(x => x.Id)
-                .HasColumnType("varchar(255)");
+                .HasColumnType("int");
 
             builder.Property(x => x.Descripcion)
                 .HasColumnType("varchar(100)");

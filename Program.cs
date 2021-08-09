@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace xmedical_ehr
+namespace xmedicalehr.api
 {
     public class Program
     {
@@ -20,7 +20,7 @@ namespace xmedical_ehr
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://localhost:5005").UseStartup<Startup>();
                 });
     }
 }

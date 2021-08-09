@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models
+namespace xmedicalehr.api.Models
 {
     public class Enfermedad
     {

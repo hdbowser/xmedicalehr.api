@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace xmedical_ehr.Models
+namespace xmedicalehr.api.Models
 {
     public class Nacionalidad
     {
@@ -9,7 +9,7 @@ namespace xmedical_ehr.Models
             Pacientes = new HashSet<Paciente>();
         }
         
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Descripcion { get; set; }
         public string CodigoInt { get; set; }
 

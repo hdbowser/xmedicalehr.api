@@ -1,6 +1,8 @@
 using System;
-namespace xmedical_ehr.Models {
-    public class OrdenMedica {
+namespace xmedicalehr.api.Models
+{
+    public class OrdenMedica
+    {
         public string NotaMedicaId { get; set; }
         public int NumItem { get; set; }
         public string TipoId { get; set; }
@@ -18,7 +20,7 @@ namespace xmedical_ehr.Models {
         public DateTime Fecha { get; set; }
         public string Instruccciones { get; set; }
         public string Comentario { get; set; }
-        public int Deleted { get; set; }
+        public bool Deleted { get; set; }
         public DateTime CreatedAt { get; set; }
 
         //Navigations

@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using xmedical_ehr.Models;
-namespace xmedical_ehr.Data.Configurations
+using xmedicalehr.api.Models;
+namespace xmedicalehr.api.Data.Configurations
 {
     public class AtencionMedicaConfiguration : IEntityTypeConfiguration<AtencionMedica>
     {
@@ -56,6 +56,9 @@ namespace xmedical_ehr.Data.Configurations
 
             builder.Property(x => x.DeletedBy)
                 .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.DeletedAt)
+                .HasColumnType("datetime");
             
 
             builder.HasOne(x => x.Paciente)

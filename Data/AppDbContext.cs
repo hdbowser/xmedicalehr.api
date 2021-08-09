@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using xmedical_ehr.Account;
-using xmedical_ehr.Data.Configurations;
-using xmedical_ehr.Data.Migrations.Configurations;
-using xmedical_ehr.Models;
+using xmedicalehr.api.Account;
+using xmedicalehr.api.Data.Configurations;
+using xmedicalehr.api.Data.Migrations.Configurations;
+using xmedicalehr.api.Models;
 
-namespace xmedical_ehr.Data
+namespace xmedicalehr.api.Data
 {
     public class AppDbContext : IdentityDbContext<User, Role, string>
     {
@@ -21,25 +21,30 @@ namespace xmedical_ehr.Data
         public DbSet<TipoAntecedente> TiposAntecedentes { get; set; }
         public DbSet<TipoParentesco> TiposParentescos { get; set; }
         public DbSet<AtencionMedica> AtencionesMedicas { get; set; }
-        public DbSet<TipoAtencion> TiposAntenciones { get; set; }
+        public DbSet<TipoAtencion> TiposAtenciones { get; set; }
         public DbSet<Cama> Camas { get; set; }
         public DbSet<Habitacion> Habitaciones { get; set; }
         public DbSet<SolicitudInterconsulta> SolicitudesInterconsultas { get; set; }
         public DbSet<Departamento> Departamentos { get; set; }
         public DbSet<Enfermedad> Enfermedades { get; set; }
         public DbSet<ExploracionItem> ExploracionItems { get; set; }
-        public DbSet<ExploracionItemTemplate> ExploracionItemTeplates { get; set; }
+        public DbSet<ExploracionItemTemplate> ExploracionItemTemplates { get; set; }
         public DbSet<Medicacion> Medicaciones { get; set; }
         public DbSet<NotaEnfermeria> NotasEnfermeria { get; set; }
-        public DbSet<OrdenMedica> OrdenesMedicas { get; set; }
+        public DbSet<OrdenMedica> OrdenesMedica { get; set; }
+        public DbSet<NotaMedica> NotasMedica { get; set; }
         public DbSet<TipoNotaMedica> TiposNotasMedicas { get; set; }
-        public DbSet<Diagnostico> Diagnosticas { get; set; }
+        public DbSet<Diagnostico> Diagnosticos { get; set; }
         public DbSet<Estudio> Estudios { get; set; }
         public DbSet<Medicamento> Medicamentos { get; set; }
         public DbSet<SignosVitales> SignosVitales { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<NotaMedicaCustomField> NotaMedicaCustomFields { get; set; }
+
+
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new RoleConfiguration());
