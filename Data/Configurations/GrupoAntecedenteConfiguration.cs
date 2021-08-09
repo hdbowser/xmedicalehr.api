@@ -15,6 +15,22 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.Descripcion)
                 .HasColumnType("varchar(100)");
+            
+            
+            builder.HasData(new GrupoAntecedente[]{
+                new GrupoAntecedente{
+                    Id = 1,
+                    Descripcion = "PATOLOGICOS"
+                },
+                new GrupoAntecedente{
+                    Id = 2,
+                    Descripcion = "NO PATOLOGICOS"
+                },
+                new GrupoAntecedente{
+                    Id = 3,
+                    Descripcion = "PSIQUIATRICOS"
+                }
+            });
 
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Account;
@@ -10,6 +11,15 @@ namespace xmedicalehr.api.Data.Migrations.Configurations
         {
             builder.Property(x => x.DisplayName)
                 .HasColumnType("varchar(150)");
+            
+            
+            builder.HasData(new Role[]{
+                new Role{
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "admin",
+                    DisplayName = "Administrador"
+                }
+            });
         }
     }
 }

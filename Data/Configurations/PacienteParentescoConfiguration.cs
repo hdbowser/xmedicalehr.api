@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Models;
 namespace xmedicalehr.api.Data.Configurations
 {
-    public class PacienteParentescoConfituration : IEntityTypeConfiguration<PacienteParentesco>
+    public class PacienteParentescoConfiguration : IEntityTypeConfiguration<PacienteParentesco>
     {
         public void Configure(EntityTypeBuilder<PacienteParentesco> builder)
         {

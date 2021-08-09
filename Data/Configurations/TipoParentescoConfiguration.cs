@@ -17,6 +17,26 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(45)")
                 .IsRequired();
 
+            
+            builder.HasData(new TipoParentesco[]{
+                new TipoParentesco{
+                    Id = 1,
+                    Descripcion = "Esposo/a"
+                },
+                new TipoParentesco{
+                    Id = 2,
+                    Descripcion = "Padre"
+                },
+                new TipoParentesco{
+                    Id = 3,
+                    Descripcion = "Madre"
+                },
+                new TipoParentesco{
+                    Id = 4,
+                    Descripcion = "Hijo/a"
+                }
+            });
+
         }
     }
 }

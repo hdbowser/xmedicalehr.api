@@ -16,6 +16,22 @@ namespace xmedicalehr.api.Data.Configurations
             builder.Property(x => x.Descripcion)
                 .HasColumnType("varchar(45)")
                 .IsRequired();
+            
+
+            builder.HasData(new TipoAtencion[]{
+                new TipoAtencion{
+                    Id = "E",
+                    Descripcion = "Emergencia"
+                },
+                new TipoAtencion{
+                    Id = "H",
+                    Descripcion = "Hospitalizacion"
+                },
+                new TipoAtencion{
+                    Id = "A",
+                    Descripcion = "Ambulatoria"
+                }
+            });
 
         }
     }

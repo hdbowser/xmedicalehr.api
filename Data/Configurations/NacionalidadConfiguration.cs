@@ -18,6 +18,14 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.CodigoInt)
                 .HasColumnType("varchar(255)");
+            
+
+            builder.HasData(new Nacionalidad[]{
+                new Nacionalidad{
+                    Id = 1,
+                    Descripcion = "Dominicana"
+                }
+            });
 
         }
     }

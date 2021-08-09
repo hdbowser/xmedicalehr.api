@@ -24,6 +24,25 @@ namespace xmedicalehr.api.Data.Configurations
                 .WithMany(h => h.Camas)
                 .HasForeignKey(x => x.HabitacionId)
                 .HasConstraintName("FK_Cama_Habitacion");
+            
+
+            builder.HasData(new Cama[]{
+                new Cama{
+                    Id = 1,
+                    Descripcion = "1",
+                    HabitacionId = 1
+                },
+                new Cama{
+                    Id = 2,
+                    Descripcion = "1",
+                    HabitacionId = 2
+                },
+                new Cama{
+                    Id = 3,
+                    Descripcion = "1",
+                    HabitacionId = 3
+                }
+            });
         }
     }
 }

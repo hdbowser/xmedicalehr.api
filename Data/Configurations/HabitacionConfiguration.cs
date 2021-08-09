@@ -16,7 +16,22 @@ namespace xmedicalehr.api.Data.Configurations
             builder.Property(x => x.Descripcion)
                 .HasColumnType("varchar(45)")
                 .IsRequired();
+            
 
+            builder.HasData(new Habitacion[]{
+                new Habitacion{
+                    Id = 1,
+                    Descripcion = "Habitacion 301"
+                },
+                new Habitacion{
+                    Id = 2,
+                    Descripcion = "Habitacion 302"
+                },
+                new Habitacion{
+                    Id = 3,
+                    Descripcion = "Habitacion 303"
+                }
+            });
             
         }
     }

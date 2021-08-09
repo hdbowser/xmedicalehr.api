@@ -19,6 +19,40 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.Tipo)
                 .HasColumnType("varchar(45)");
+            
+            
+            builder.HasData(new Estudio[]{
+                new Estudio {
+                    Id = 1,
+                    Descripcion = "HEMOGRAMA",
+                    Tipo = "LAB"
+                },
+                new Estudio {
+                    Id = 2,
+                    Descripcion = "ORINA",
+                    Tipo = "LAB"
+                },
+                new Estudio {
+                    Id = 3,
+                    Descripcion = "COPROLOGICO",
+                    Tipo = "LAB"
+                },
+                new Estudio {
+                    Id = 4,
+                    Descripcion = "SONOGRAFIA",
+                    Tipo = "IMG"
+                },
+                new Estudio {
+                    Id = 5,
+                    Descripcion = "TOMOGRAFIA",
+                    Tipo = "IMG"
+                },
+                new Estudio {
+                    Id = 6,
+                    Descripcion = "RADIOGRAFIA",
+                    Tipo = "IMG"
+                }
+            });
 
         }
     }

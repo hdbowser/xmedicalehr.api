@@ -56,7 +56,7 @@ namespace xmedicalehr.api.Data
             builder.ApplyConfiguration(new GrupoAntecedenteConfiguration());
             builder.ApplyConfiguration(new NacionalidadConfiguration());
             builder.ApplyConfiguration(new PacienteConfiguration());
-            builder.ApplyConfiguration(new PacienteParentescoConfituration());
+            builder.ApplyConfiguration(new PacienteParentescoConfiguration());
             builder.ApplyConfiguration(new ProvinciaConfiguratoin());
             builder.ApplyConfiguration(new SustanciaConfiguration());
             builder.ApplyConfiguration(new TipoAntecedenteConfiguration());

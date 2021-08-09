@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Models;
@@ -21,6 +22,24 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.Deleted)
                 .HasColumnType("tinyint(1)");
+            
+            builder.HasData(new Medicamento[]{
+                new Medicamento{
+                    Id = Guid.NewGuid().ToString(),
+                    Descripcion = "ACETAMINOFEN",
+                    CreatedAt = DateTime.Now
+                },
+                new Medicamento{
+                    Id = Guid.NewGuid().ToString(),
+                    Descripcion = "PARACETAMOL",
+                    CreatedAt = DateTime.Now
+                },
+                new Medicamento{
+                    Id = Guid.NewGuid().ToString(),
+                    Descripcion = "SOLUCION SALINA MIXTA 1000ml",
+                    CreatedAt = DateTime.Now
+                }
+            });
         }
     }
 }
