@@ -9,7 +9,8 @@ namespace xmedicalehr.api.Models
         {
             Alergias = new HashSet<AlergiaPaciente>();
             Antecedentes = new HashSet<AntecedentePaciente>();
-            PacientesParentesco = new HashSet<PacienteParentesco>();
+            PacienteParentescos = new HashSet<PacienteParentesco>();
+            ParentescosPaciente = new HashSet<PacienteParentesco>();
             Atenciones = new HashSet<AtencionMedica>();
         }
         public string Id { get; set; }
@@ -33,11 +34,16 @@ namespace xmedicalehr.api.Models
         public string NSS { get; set; }
         public string NumAsegurado { get; set; }
         public string Nota { get; set; }
+
+
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
-        public bool Deleted { get; set; }
         public string DeletedBy { get; set; }
+        public bool Deleted { get; set; }
+
 
         // Navigations
         public virtual Nacionalidad Nacionalidad { get; set; }
@@ -46,7 +52,8 @@ namespace xmedicalehr.api.Models
 
         public virtual ICollection<AlergiaPaciente> Alergias { get; set; }
         public virtual ICollection<AntecedentePaciente> Antecedentes { get; set; }
-        public virtual ICollection<PacienteParentesco> PacientesParentesco { get; set; }
+        public virtual ICollection<PacienteParentesco> PacienteParentescos { get; set; }
+        public virtual ICollection<PacienteParentesco> ParentescosPaciente { get; set; }
         public virtual ICollection<AtencionMedica> Atenciones { get; set; }
     }
 }

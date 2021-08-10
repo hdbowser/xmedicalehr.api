@@ -8,7 +8,7 @@ namespace xmedicalehr.api.Models
         {
             Camas = new HashSet<Cama>();
         }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
 
         //    Navigations

@@ -16,12 +16,22 @@ namespace xmedicalehr.api.Models
         public int NumDiagnostico { get; set; }
         public int TiempoExpiracion { get; set; }
         public bool Suspendido { get; set; }
-        public int EstudioId { get; set; }
+        public string EstudioId { get; set; }
         public DateTime Fecha { get; set; }
         public string Instruccciones { get; set; }
         public string Comentario { get; set; }
-        public bool Deleted { get; set; }
+
+
         public DateTime CreatedAt { get; set; }
+        public string CreatedBy { get; set; }
+        public bool Deleted { get; set; }
+        public string DeletedBy { get; set; }
+        public DateTime DeletedAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+
+
 
         //Navigations
         public virtual NotaMedica NotaMedica { get; set; }

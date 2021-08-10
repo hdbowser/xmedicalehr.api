@@ -1,5 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 //using xmedicalehr.api.Models;
 
@@ -7,10 +9,9 @@ namespace xmedicalehr.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-    public class HomeController : ControllerBase
+    public class AccountController : ControllerBase
     {
-        public HomeController()
+        public AccountController()
         {
         }
 
@@ -20,7 +21,7 @@ namespace xmedicalehr.api.Controllers
             // TODO: Your code here
             await Task.Yield();
 
-            return new JsonResult("Hola prietico");
+            return new JsonResult("");
         }
     }
 }

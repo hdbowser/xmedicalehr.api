@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Models;
@@ -11,14 +12,13 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasName("PRIMARY");
             
             builder.Property(x => x.Id)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Descripcion)
-                .HasColumnType("varchar(50)")
-                .IsRequired();
+                .HasColumnType("varchar(50)");
             
             builder.Property(x => x.HabitacionId)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.HasOne(x => x.Habitacion)
                 .WithMany(h => h.Camas)
@@ -26,23 +26,6 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasConstraintName("FK_Cama_Habitacion");
             
 
-            builder.HasData(new Cama[]{
-                new Cama{
-                    Id = 1,
-                    Descripcion = "1",
-                    HabitacionId = 1
-                },
-                new Cama{
-                    Id = 2,
-                    Descripcion = "1",
-                    HabitacionId = 2
-                },
-                new Cama{
-                    Id = 3,
-                    Descripcion = "1",
-                    HabitacionId = 3
-                }
-            });
         }
     }
 }

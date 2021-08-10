@@ -41,6 +41,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
+                model.UpdatedAt = DateTime.Now;
                 _db.AntecedetesPacientes.Update(model);
             }
             catch (System.Exception ex)
@@ -79,7 +80,7 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(string pacienteId, int tipoAntecedenteId)
+        public async Task<object> FindByIdAsync(string pacienteId, string tipoAntecedenteId)
         {
             object obj = null;
             try
@@ -106,6 +107,7 @@ namespace xmedicalehr.api.Repositories
             try
             {
                 model.Deleted = true;
+                model.DeletedAt = DateTime.Now;
                 _db.AntecedetesPacientes.Update(model);
             }
             catch (System.Exception ex)

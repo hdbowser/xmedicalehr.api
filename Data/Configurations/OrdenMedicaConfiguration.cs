@@ -49,7 +49,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("tinyint(1)");
             
             builder.Property(x => x.EstudioId)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
             
             builder.Property(x => x.Fecha)
                 .HasColumnType("datetime");
@@ -64,6 +64,21 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("tinyint");
             
             builder.Property(x => x.CreatedAt)
+                .HasColumnType("datetime");
+
+            builder.Property(x => x.CreatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.DeletedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.DeletedAt)
+                .HasColumnType("datetime");
+            
+            builder.Property(x => x.UpdatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedAt)
                 .HasColumnType("datetime");
 
 

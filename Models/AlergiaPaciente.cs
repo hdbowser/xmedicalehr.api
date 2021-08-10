@@ -3,7 +3,7 @@ namespace xmedicalehr.api.Models
     public class AlergiaPaciente
     {
         public string PacienteId { get; set; }
-        public int SustanciaId { get; set; }
+        public string SustanciaId { get; set; }
         public string Comentario { get; set; }
 
         // Navications

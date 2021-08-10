@@ -8,7 +8,7 @@ namespace xmedicalehr.api.Models
         {
             OrdenesMedicas = new HashSet<OrdenMedica>();
         }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
         public string Tipo { get; set; }
 

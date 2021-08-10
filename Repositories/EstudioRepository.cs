@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
+                model.Id = Guid.NewGuid().ToString();
                 await _db.Estudios.AddAsync(model);
             }
             catch (System.Exception ex)
@@ -77,7 +79,7 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(int id)
+        public async Task<object> FindByIdAsync(string id)
         {
             object obj = null;
             try

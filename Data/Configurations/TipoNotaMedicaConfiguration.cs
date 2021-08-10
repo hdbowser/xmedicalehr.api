@@ -14,8 +14,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(45)");
 
             builder.Property(x => x.Descripcion)
-                .HasColumnType("varchar(45)")
-                .IsRequired();
+                .HasColumnType("varchar(45)");
             
 
             builder.HasData(new TipoNotaMedica[]{

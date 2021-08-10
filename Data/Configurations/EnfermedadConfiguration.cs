@@ -20,8 +20,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(45)");
 
             builder.Property(x => x.Descripcion)
-                .HasColumnType("varchar(1024)")
-                .IsRequired();
+                .HasColumnType("varchar(1024)");
 
             builder.Property(x => x.Keywords)
                 .HasColumnType("varchar(2045)");

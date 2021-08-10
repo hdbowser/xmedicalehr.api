@@ -8,9 +8,9 @@ namespace xmedicalehr.api.Models
         {
             Atenciones = new HashSet<AtencionMedica>();
         }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
-        public int HabitacionId { get; set; }
+        public string HabitacionId { get; set; }
 
         // Navigations
         public Habitacion Habitacion { get; set; }

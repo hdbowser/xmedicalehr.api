@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
-using xmedicalehr.api.Data;
 using xmedicalehr.api.Core;
 
 namespace xmedicalehr.api.Data

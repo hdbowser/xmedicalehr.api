@@ -18,8 +18,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Nombres)
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+                .HasColumnType("varchar(100)");
 
             builder.Property(x => x.PrimerApellido)
                 .HasColumnType("varchar(100)");
@@ -83,6 +82,12 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.CreatedBy)
                 .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedAt)
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Deleted)
                 .HasColumnType("tinyint(1)");
@@ -92,6 +97,8 @@ namespace xmedicalehr.api.Data.Configurations
             
             builder.Property(x => x.DeletedBy)
                 .HasColumnType("varchar(255)");
+
+                
 
             builder.HasOne(x => x.Aseguradora)
                 .WithMany(a => a.Pacientes)

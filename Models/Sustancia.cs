@@ -9,7 +9,7 @@ namespace xmedicalehr.api.Models
             Alergias = new HashSet<AlergiaPaciente>();
         }
         
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
 
         // Navigations

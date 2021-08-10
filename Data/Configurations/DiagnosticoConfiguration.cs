@@ -14,19 +14,36 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
 
             builder.Property(x => x.NumItem)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.EnfermedadId)
-                .HasColumnType("varchar(255)")
-                .IsRequired();
+                .HasColumnType("varchar(255)");
+                
             builder.Property(x => x.Comentario)
                 .HasColumnType("varchar(1024)");
 
             builder.Property(x => x.CreatedAt)
                 .HasColumnType("datetime");
+            
+            builder.Property(x => x.CreatedBy)
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Deleted)
                 .HasColumnType("tinyint(1)");
+            
+            builder.Property(x => x.DeletedAt)
+                .HasColumnType("datetime");
+            
+            builder.Property(x => x.DeletedBy)
+                .HasColumnType("varchar(255)");
+
+            builder.Property(x => x.UpdatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedAt)
+                .HasColumnType("datetime");
+
+
 
             builder.HasOne(x => x.NotaMedica)
                 .WithMany(x => x.Diagnosticos)
@@ -36,7 +53,7 @@ namespace xmedicalehr.api.Data.Configurations
             builder.HasOne(x => x.Enfermedad)
                 .WithMany(x => x.Diagnosticos)
                 .HasForeignKey(x => x.EnfermedadId)
-                .HasConstraintName("FK_Diagnosticos_NotasMedicas");
+                .HasConstraintName("FK_Diagnosticos_Enfermerdad");
 
         }
     }

@@ -19,24 +19,25 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
             
             builder.Property(x => x.TipoParentescoId)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.ParentescoId)
                 .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Comentario)
                 .HasColumnType("varchar(200)");
+                
 
 
             builder.HasOne(x => x.Paciente)
-                .WithMany(p => p.PacientesParentesco)
-                .HasConstraintName("FK_PacientesParentesco_Pacientes")
+                .WithMany(p => p.PacienteParentescos)
+                .HasConstraintName("FK_PacienteParentescos_Pacientes")
                 .HasForeignKey(x => x.PacienteId);
 
-            // builder.HasOne(x => x.Parentesco)
-            //     .WithMany(p => p.PacientesParentescos)
-            //     .HasForeignKey(x => x.ParentescoId)
-            //     .HasConstraintName("FK_PacientesParentesco_Parentescos");
+            builder.HasOne(x => x.Parentesco)
+                .WithMany(p => p.ParentescosPaciente)
+                .HasForeignKey(x => x.ParentescoId)
+                .HasConstraintName("FK_ParentescosPaciente_Pacientes");
 
             builder.HasOne(x => x.TipoParentesco)
                 .WithMany(p => p.PacientesParentesco)

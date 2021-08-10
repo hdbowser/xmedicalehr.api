@@ -9,9 +9,9 @@ namespace xmedicalehr.api.Models
             AntecedentesPacientes = new HashSet<AntecedentePaciente>();
         }
         
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
-        public int GrupoId { get; set; }
+        public string GrupoId { get; set; }
 
         // Navigations
         public virtual GrupoAntecedente Grupo { get; set; }

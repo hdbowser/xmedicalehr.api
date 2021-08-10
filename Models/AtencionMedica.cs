@@ -21,7 +21,7 @@ namespace xmedicalehr.api.Models
         public string MedicoId { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string EdadPaciente { get; set; }
-        public int CamaId { get; set; }
+        public string CamaId { get; set; }
         public string Origen { get; set; }
         public string NombreFinanciador { get; set; }
         public string TipoFinanciamiento { get; set; }
@@ -31,6 +31,9 @@ namespace xmedicalehr.api.Models
         public bool Deleted { get; set; }
         public string DeletedBy { get; set; }
         public DateTime DeletedAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
 
 
         // Navigation properties
@@ -39,6 +42,8 @@ namespace xmedicalehr.api.Models
         public virtual User Medico { get; set; }
         public virtual Cama Cama { get; set; }
         public virtual User Creator { get; set; }
+        public virtual Aseguradora Aseguradora { get; set; }
+
         public virtual ICollection<SolicitudInterconsulta> SolicitudesInterconsultas { get; set; }
         public virtual ICollection<NotaMedica> NotasMedicas { get; set; }
         public virtual ICollection<SignosVitales> SignosVitales { get; set; }

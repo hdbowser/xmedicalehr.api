@@ -11,10 +11,15 @@ namespace xmedicalehr.api.Models
         public string Unidad { get; set; }
         public string Via { get; set; }
         public string Comentario { get; set; }
+
+        
         public string CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool Deleted { get; set; }
         public DateTime DeletedAt { get; set; }
+        public string DeletedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
 
         // Navigation properties

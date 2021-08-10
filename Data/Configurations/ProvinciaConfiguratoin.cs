@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Models;
@@ -11,11 +12,10 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasName("PRIMARY");
                 
             builder.Property(x => x.Id)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Nombre)
-                .HasColumnType("varchar(200)")
-                .IsRequired();
+                .HasColumnType("varchar(200)");
 
             builder.Property(x => x.CodigoInt)
                 .HasColumnType("varchar(255)");
@@ -23,7 +23,7 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.HasData(new Provincia[]{
                 new Provincia{
-                    Id = 1,
+                    Id = Guid.NewGuid().ToString(),
                     Nombre = "Duarte"
                 }
             });

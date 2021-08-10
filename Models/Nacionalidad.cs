@@ -9,7 +9,7 @@ namespace xmedicalehr.api.Models
             Pacientes = new HashSet<Paciente>();
         }
         
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
         public string CodigoInt { get; set; }
 

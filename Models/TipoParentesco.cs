@@ -9,7 +9,7 @@ namespace xmedicalehr.api.Models
             PacientesParentesco = new HashSet<PacienteParentesco>();
         }
         
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
 
         // Navigantions

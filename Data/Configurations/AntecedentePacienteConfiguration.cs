@@ -14,7 +14,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
             
             builder.Property(x => x.TipoAntecedenteId)
-                .HasColumnName("int");
+                .HasColumnName("varchar(255)");
 
             builder.Property(x => x.Detalle)
                 .HasColumnType("varchar(255)");
@@ -26,8 +26,20 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("datetime");
 
             builder.Property(x => x.Deleted)
-                .HasColumnType("tinyint")
-                .HasDefaultValue(0);
+                .HasColumnType("tinyint");
+            
+            builder.Property(x => x.DeletedAt)
+                .HasColumnType("datetime");
+            
+            builder.Property(x => x.DeletedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedAt)
+                .HasColumnType("datetime");
+                
 
             builder.HasOne(x => x.Paciente)
                 .WithMany(p => p.Antecedentes)

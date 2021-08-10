@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using xmedicalehr.api.Models;
@@ -9,13 +8,12 @@ namespace xmedicalehr.api.Account
     {
         public User()
         {
-            // Atenciones = new HashSet<AtencionMedica>();
-            // AtencionesCreadas = new HashSet<>();
-            // SolicitudesInterconsultas = new HashSet<>();
-            // InterconsultasSolicitadas = new HashSet<>();
-            // NotasMedicas = new HashSet<>();
-            // NotasEnfermeria = new HashSet<>();
-            //TODO revisar porque tiene dos colecciones de AtencionMedica
+            Atenciones = new HashSet<AtencionMedica>();
+            AtencionesCreadas = new HashSet<AtencionMedica>();
+            SolicitudesInterconsultas = new HashSet<SolicitudInterconsulta>();
+            InterconsultasSolicitadas = new HashSet<SolicitudInterconsulta>();
+            NotasMedicas = new HashSet<NotaMedica>();
+            NotasEnfermeria = new HashSet<NotaEnfermeria>();
         }
 
         public string Name { get; set; }

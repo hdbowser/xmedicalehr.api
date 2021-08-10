@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Models;
@@ -11,7 +12,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasName("PRIMARY");
             
             builder.Property(x => x.Id)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Descripcion)
                 .HasColumnType("varchar(100)");
@@ -19,15 +20,15 @@ namespace xmedicalehr.api.Data.Configurations
             
             builder.HasData(new GrupoAntecedente[]{
                 new GrupoAntecedente{
-                    Id = 1,
+                    Id = Guid.NewGuid().ToString(),
                     Descripcion = "PATOLOGICOS"
                 },
                 new GrupoAntecedente{
-                    Id = 2,
+                    Id = Guid.NewGuid().ToString(),
                     Descripcion = "NO PATOLOGICOS"
                 },
                 new GrupoAntecedente{
-                    Id = 3,
+                    Id = Guid.NewGuid().ToString(),
                     Descripcion = "PSIQUIATRICOS"
                 }
             });

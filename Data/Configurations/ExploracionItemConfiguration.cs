@@ -15,7 +15,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
             
             builder.Property(x => x.ExploracionItemTemplateId)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Descripcion)
                 .HasColumnType("varchar(255)");

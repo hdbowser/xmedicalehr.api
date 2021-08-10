@@ -11,11 +11,10 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasName("PRIMARY");
                 
             builder.Property(x => x.Id)
-                .HasColumnType("varchar(255");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Nombre)
-                .HasColumnType("varchar(255)")
-                .IsRequired();
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Telefono)
                 .HasColumnType("varchar(45)");

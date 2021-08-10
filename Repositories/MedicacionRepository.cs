@@ -44,6 +44,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
+                model.UpdatedAt = DateTime.Now;
                 _db.Medicaciones.Update(model);
             }
             catch (System.Exception ex)

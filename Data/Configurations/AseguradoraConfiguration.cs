@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using xmedicalehr.api.Models;
@@ -17,8 +16,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Nombre)
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+                .HasColumnType("varchar(100)");
 
             builder.Property(x => x.CodigoInt)
                 .HasColumnType("varchar(255)");

@@ -14,8 +14,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
 
             builder.Property(x => x.AtencionId)
-                .HasColumnType("varchar(255)")
-                .IsRequired();
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.MotivoConsulta)
                 .HasColumnType("mediumtext");
@@ -85,6 +84,14 @@ namespace xmedicalehr.api.Data.Configurations
             
             builder.Property(x => x.CreatedAt)
                 .HasColumnType("datetime");
+            
+            builder.Property(x => x.UpdatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedAt)
+                .HasColumnType("datetime");
+            
+            
 
             builder.HasOne(x => x.AtencionMedica)
                 .WithMany(nm => nm.NotasMedicas)

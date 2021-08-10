@@ -20,6 +20,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
+                model.Id = Guid.NewGuid().ToString();
                 await _db.Provincias.AddAsync(model);
             }
             catch (System.Exception ex)

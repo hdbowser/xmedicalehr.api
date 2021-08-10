@@ -45,6 +45,17 @@ namespace xmedicalehr.api.Data.Configurations
             
             builder.Property(x => x.DeletedAt)
                 .HasColumnType("datetime");
+
+            builder.Property(x => x.DeletedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedBy)
+                .HasColumnType("varchar(255)");
+            
+            builder.Property(x => x.UpdatedAt)
+                .HasColumnType("datetime");
+
+
             
             builder.HasOne(x => x.AtencionMedica)
                 .WithMany(ne => ne.Medicaciones)

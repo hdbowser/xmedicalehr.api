@@ -8,8 +8,9 @@ namespace xmedicalehr.api.Models
         {
             ExploracionItems = new HashSet<ExploracionItem>();
         }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Nombre { get; set; }
+        public bool Deleted { get; set; }
 
         // Navigations
         public virtual ICollection<ExploracionItem> ExploracionItems { get; set; }

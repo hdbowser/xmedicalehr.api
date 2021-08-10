@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
+                model.Id = Guid.NewGuid().ToString();
                 await _db.ExploracionItemTemplates.AddAsync(model);
             }
             catch (System.Exception ex)
@@ -103,6 +105,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
+                model.Deleted = true;
                 _db.ExploracionItemTemplates.Update(model);
             }
             catch (System.Exception ex)

@@ -11,14 +11,13 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasName("PRIMARY");
             
             builder.Property(x => x.Id)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Descripcion)
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+                .HasColumnType("varchar(100)");
             
             builder.Property(x => x.GrupoId)
-                .HasColumnType("int");
+                .HasColumnType("varchar(255)");
 
 
             builder.HasOne(x => x.Grupo)
@@ -26,24 +25,6 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasForeignKey(x => x.GrupoId)
                 .HasConstraintName("FK_TipoAntecedente_GrupoAntecedente");
             
-
-            builder.HasData(new TipoAntecedente[]{
-                new TipoAntecedente{
-                    Id = 1,
-                    Descripcion = "Cardiopatias",
-                    GrupoId = 1
-                },
-                new TipoAntecedente{
-                    Id = 2,
-                    Descripcion = "Tabaquismo",
-                    GrupoId = 2
-                },
-                new TipoAntecedente{
-                    Id = 3,
-                    Descripcion = "Conciencia de enfermedad",
-                    GrupoId = 3
-                }
-            });
         }
     }
 }

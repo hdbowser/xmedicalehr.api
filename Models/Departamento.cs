@@ -8,7 +8,7 @@ namespace xmedicalehr.api.Models
         {
             SolicitudesInterconsultas = new HashSet<SolicitudInterconsulta>();
         }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Descripcion { get; set; }
         public bool Deleted { get; set; }
 

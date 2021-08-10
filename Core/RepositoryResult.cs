@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.Configuration;
-using Serilog;
-using xmedicalehr.api.Data;
 
 namespace xmedicalehr.api.Core
 {

@@ -9,14 +9,21 @@ namespace xmedicalehr.api.Models
         public string AtencionId { get; set; }
         public int NumItem { get; set; }
         public string MedicoId { get; set; }
-        public int DepartamentoId { get; set; }
+        public string DepartamentoId { get; set; }
         public string MedicoInterconsultadoId { get; set; }
         public string Motivo { get; set; }
         public string Recomendaciones { get; set; }
+        public bool Atendido { get; set; }
+        
+        
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public string UpdatedBy { get; set; }
         public bool Deleted { get; set; }
-        public bool Atendido { get; set; }
+        public DateTime DeletedAt { get; set; }
+        public string DeletedBy { get; set; }
+        
 
         // Navitagions
 
