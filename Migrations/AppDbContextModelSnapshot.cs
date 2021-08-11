@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using xmedicalehr.api.Data;
 
-namespace xmedical_ehr.Data.Migrations
+namespace xmedical_ehr.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -150,8 +150,8 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "985b99c6-92bb-4dc0-b77d-ac3d49ade911",
-                            ConcurrencyStamp = "46e95c99-7758-45c9-8a45-77403801d072",
+                            Id = "1872ffce-b45f-488a-aa1e-371ff7004f8c",
+                            ConcurrencyStamp = "e45c8741-fac3-4121-b2f1-ab469ad0b04b",
                             DisplayName = "Administrador",
                             Name = "admin"
                         });
@@ -230,7 +230,7 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ce93a609-02a9-4e24-8862-efeaabd9c397",
+                            Id = "86065938-65e8-4258-8a59-9c9f78a15321",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "d9b82e89-edd5-48a0-a728-7e92c90fb921",
                             Email = "root@system.local",
@@ -327,17 +327,17 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ebe7bd32-5f59-45d6-8665-60e0a23907a4",
+                            Id = "5e46571c-3e37-471a-89c0-67cb537b3435",
                             Nombre = "SENASA"
                         },
                         new
                         {
-                            Id = "20c12530-3e6a-4382-81c1-08504ff7a7c5",
+                            Id = "4eae19b4-72a6-4007-826a-8658780a4449",
                             Nombre = "ARS HUMANO"
                         },
                         new
                         {
-                            Id = "ba0767a0-5dd8-4d22-adfd-f95fbe334d6a",
+                            Id = "e69f77d5-7712-4bd1-abe4-cf9d6434085e",
                             Nombre = "UNIVERSAL"
                         });
                 });
@@ -568,37 +568,37 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b4f83c55-ccab-4b42-a390-b53bf89c041b",
+                            Id = "6516f4fc-5562-42df-b2d8-3a5ffe58b937",
                             Descripcion = "HEMOGRAMA",
                             Tipo = "LAB"
                         },
                         new
                         {
-                            Id = "aa4112d8-7873-493d-b7ad-8195fac3cc8e",
+                            Id = "0217ca5b-9adc-45a7-a215-2bc058b40f58",
                             Descripcion = "ORINA",
                             Tipo = "LAB"
                         },
                         new
                         {
-                            Id = "365fe1a5-e38f-4ca0-b961-e87a42fae0f4",
+                            Id = "8cf6b0c3-8a05-4cc0-a49f-6913fb918566",
                             Descripcion = "COPROLOGICO",
                             Tipo = "LAB"
                         },
                         new
                         {
-                            Id = "e713a94d-23cd-488b-a049-b7502ecf728c",
+                            Id = "93ad4bb1-0983-4175-b44f-6a54413a12fb",
                             Descripcion = "SONOGRAFIA",
                             Tipo = "IMG"
                         },
                         new
                         {
-                            Id = "6ee7a2a4-f377-4cb8-8c26-72995d7c92dd",
+                            Id = "649fc467-7536-43f2-81df-b37df1503508",
                             Descripcion = "TOMOGRAFIA",
                             Tipo = "IMG"
                         },
                         new
                         {
-                            Id = "d5e758f5-e0bb-4a86-a8dd-db6375d1b334",
+                            Id = "5401ac1b-f904-4a58-8284-a27b3bd5c061",
                             Descripcion = "RADIOGRAFIA",
                             Tipo = "IMG"
                         });
@@ -661,17 +661,17 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bf38a802-329f-4fc0-bba2-a67e02968ee5",
+                            Id = "1bbe4827-824c-490d-afa0-35287613cda0",
                             Descripcion = "PATOLOGICOS"
                         },
                         new
                         {
-                            Id = "0a7eaf07-34ae-46ac-b70b-b5319683a004",
+                            Id = "f34c0149-c03d-40aa-83d4-2bb8902dca66",
                             Descripcion = "NO PATOLOGICOS"
                         },
                         new
                         {
-                            Id = "05cf3870-1f0d-400e-9cc0-8e77dd3b355b",
+                            Id = "3685fc44-8a11-429b-a40a-e98aa0531c8b",
                             Descripcion = "PSIQUIATRICOS"
                         });
                 });
@@ -692,17 +692,17 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "910102a7-2fc8-4e7a-a1ac-148cf34ad315",
+                            Id = "eec11d9b-baf0-469e-a1c9-35286668ad42",
                             Descripcion = "Habitacion 301"
                         },
                         new
                         {
-                            Id = "02bdb663-dc1c-4533-a86e-b6efa90a53e4",
+                            Id = "c700f3d8-18cf-42f4-b595-51b17a460f53",
                             Descripcion = "Habitacion 302"
                         },
                         new
                         {
-                            Id = "e2633de8-5dd5-4489-8484-d1b6f982685e",
+                            Id = "5f22a5f5-0e66-4043-abae-6fea7ccbd1e6",
                             Descripcion = "Habitacion 303"
                         });
                 });
@@ -786,22 +786,22 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4b254d5d-1e92-419b-9f00-e060073ed002",
-                            CreatedAt = new DateTime(2021, 8, 10, 15, 55, 39, 415, DateTimeKind.Local).AddTicks(1260),
+                            Id = "c115e3cd-590e-4738-926e-bc670afdee5a",
+                            CreatedAt = new DateTime(2021, 8, 11, 14, 59, 3, 470, DateTimeKind.Local).AddTicks(6978),
                             Deleted = false,
                             Descripcion = "ACETAMINOFEN"
                         },
                         new
                         {
-                            Id = "c95744c1-bd41-4245-baee-ba995324a05d",
-                            CreatedAt = new DateTime(2021, 8, 10, 15, 55, 39, 415, DateTimeKind.Local).AddTicks(8787),
+                            Id = "40a1025a-9e26-4b1e-b2fe-70c016e4d363",
+                            CreatedAt = new DateTime(2021, 8, 11, 14, 59, 3, 474, DateTimeKind.Local).AddTicks(5091),
                             Deleted = false,
                             Descripcion = "PARACETAMOL"
                         },
                         new
                         {
-                            Id = "99e852d4-1c9d-4031-9b64-7c22dd3883bb",
-                            CreatedAt = new DateTime(2021, 8, 10, 15, 55, 39, 415, DateTimeKind.Local).AddTicks(8824),
+                            Id = "b30674fa-9c8b-4c5f-936d-333d295ed8a0",
+                            CreatedAt = new DateTime(2021, 8, 11, 14, 59, 3, 474, DateTimeKind.Local).AddTicks(5175),
                             Deleted = false,
                             Descripcion = "SOLUCION SALINA MIXTA 1000ml"
                         });
@@ -826,7 +826,7 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f9076ab2-8e8f-4abc-849c-c401c84fa7ce",
+                            Id = "5aa1f454-6ad3-42b2-a4b4-2c820e36ace0",
                             Descripcion = "Dominicana"
                         });
                 });
@@ -899,8 +899,8 @@ namespace xmedical_ehr.Data.Migrations
                     b.Property<bool>("DeOrden")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<sbyte>("Deleted")
-                        .HasColumnType("tinyint");
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime>("DeletedAt")
                         .HasColumnType("datetime(6)");
@@ -951,7 +951,7 @@ namespace xmedical_ehr.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<int>("SaturacionOxigeno")
-                        .HasColumnType("int)");
+                        .HasColumnType("int");
 
                     b.Property<string>("TipoNotaId")
                         .HasColumnType("varchar(255)");
@@ -1227,7 +1227,7 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4729ab09-56c6-4006-ac97-f88d736238cf",
+                            Id = "be9e2f9a-05a3-41aa-938c-abebcc79d456",
                             Nombre = "Duarte"
                         });
                 });
@@ -1471,22 +1471,22 @@ namespace xmedical_ehr.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "db4876da-47e9-403e-97eb-8322221b938d",
+                            Id = "0b95d78c-d284-4f57-b6dc-1ea040beea9d",
                             Descripcion = "Esposo/a"
                         },
                         new
                         {
-                            Id = "4f685201-628d-4000-8c1c-69b7cfd809ce",
+                            Id = "3709fc66-8389-4749-94ab-0d8c14843c74",
                             Descripcion = "Padre"
                         },
                         new
                         {
-                            Id = "cc42c566-66f3-4639-a256-59f099dbee32",
+                            Id = "499d39af-d18d-4677-936f-fe3fd29a2731",
                             Descripcion = "Madre"
                         },
                         new
                         {
-                            Id = "421505e1-0910-4cda-85fd-d55479352d49",
+                            Id = "31c61022-8996-4e76-a584-b203763b8e35",
                             Descripcion = "Hijo/a"
                         });
                 });

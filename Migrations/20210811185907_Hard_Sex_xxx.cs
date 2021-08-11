@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace xmedical_ehr.Data.Migrations
+namespace xmedical_ehr.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class Hard_Sex_xxx : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -656,11 +656,11 @@ namespace xmedical_ehr.Data.Migrations
                     UnidadPeso = table.Column<string>(type: "varchar(45)", nullable: true),
                     EscalaGlasgow = table.Column<int>(type: "int", nullable: false),
                     EscalaDolor = table.Column<int>(type: "int", nullable: false),
-                    SaturacionOxigeno = table.Column<int>(type: "int)", nullable: false),
+                    SaturacionOxigeno = table.Column<int>(type: "int", nullable: false),
                     OtrosParametros = table.Column<string>(type: "varchar(1024)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(255)", nullable: true),
-                    Deleted = table.Column<sbyte>(type: "tinyint", nullable: false),
+                    Deleted = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     DeletedBy = table.Column<string>(type: "varchar(255)", nullable: true),
                     DeletedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdatedBy = table.Column<string>(type: "varchar(255)", nullable: true),
@@ -964,32 +964,32 @@ namespace xmedical_ehr.Data.Migrations
                 columns: new[] { "Id", "CodigoInt", "Nombre" },
                 values: new object[,]
                 {
-                    { "ebe7bd32-5f59-45d6-8665-60e0a23907a4", null, "SENASA" },
-                    { "20c12530-3e6a-4382-81c1-08504ff7a7c5", null, "ARS HUMANO" },
-                    { "ba0767a0-5dd8-4d22-adfd-f95fbe334d6a", null, "UNIVERSAL" }
+                    { "5e46571c-3e37-471a-89c0-67cb537b3435", null, "SENASA" },
+                    { "4eae19b4-72a6-4007-826a-8658780a4449", null, "ARS HUMANO" },
+                    { "e69f77d5-7712-4bd1-abe4-cf9d6434085e", null, "UNIVERSAL" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "DisplayName", "Name", "NormalizedName" },
-                values: new object[] { "985b99c6-92bb-4dc0-b77d-ac3d49ade911", "46e95c99-7758-45c9-8a45-77403801d072", "Administrador", "admin", null });
+                values: new object[] { "1872ffce-b45f-488a-aa1e-371ff7004f8c", "e45c8741-fac3-4121-b2f1-ab469ad0b04b", "Administrador", "admin", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "varchar(45)", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "ce93a609-02a9-4e24-8862-efeaabd9c397", 0, "d9b82e89-edd5-48a0-a728-7e92c90fb921", "root@system.local", false, false, null, "Root", "ROOT@SYSTEM.LOCAL", "ROOT@SYSTEM.LOCAL", "AQAAAAEAACcQAAAAEBEI92DDQ3rQr8oCpJKHlvz1hN/VDJpzGkFdV3qEHSjAQdLm5q6JEvzmS6sJpQnHMw==", null, false, "Sr", "6XKETTFVMB3X6M4ENBW6YYVZYCTO52XW", false, "root@system.local" });
+                values: new object[] { "86065938-65e8-4258-8a59-9c9f78a15321", 0, "d9b82e89-edd5-48a0-a728-7e92c90fb921", "root@system.local", false, false, null, "Root", "ROOT@SYSTEM.LOCAL", "ROOT@SYSTEM.LOCAL", "AQAAAAEAACcQAAAAEBEI92DDQ3rQr8oCpJKHlvz1hN/VDJpzGkFdV3qEHSjAQdLm5q6JEvzmS6sJpQnHMw==", null, false, "Sr", "6XKETTFVMB3X6M4ENBW6YYVZYCTO52XW", false, "root@system.local" });
 
             migrationBuilder.InsertData(
                 table: "Estudios",
                 columns: new[] { "Id", "Descripcion", "Tipo" },
                 values: new object[,]
                 {
-                    { "b4f83c55-ccab-4b42-a390-b53bf89c041b", "HEMOGRAMA", "LAB" },
-                    { "aa4112d8-7873-493d-b7ad-8195fac3cc8e", "ORINA", "LAB" },
-                    { "365fe1a5-e38f-4ca0-b961-e87a42fae0f4", "COPROLOGICO", "LAB" },
-                    { "e713a94d-23cd-488b-a049-b7502ecf728c", "SONOGRAFIA", "IMG" },
-                    { "6ee7a2a4-f377-4cb8-8c26-72995d7c92dd", "TOMOGRAFIA", "IMG" },
-                    { "d5e758f5-e0bb-4a86-a8dd-db6375d1b334", "RADIOGRAFIA", "IMG" }
+                    { "6516f4fc-5562-42df-b2d8-3a5ffe58b937", "HEMOGRAMA", "LAB" },
+                    { "0217ca5b-9adc-45a7-a215-2bc058b40f58", "ORINA", "LAB" },
+                    { "8cf6b0c3-8a05-4cc0-a49f-6913fb918566", "COPROLOGICO", "LAB" },
+                    { "93ad4bb1-0983-4175-b44f-6a54413a12fb", "SONOGRAFIA", "IMG" },
+                    { "649fc467-7536-43f2-81df-b37df1503508", "TOMOGRAFIA", "IMG" },
+                    { "5401ac1b-f904-4a58-8284-a27b3bd5c061", "RADIOGRAFIA", "IMG" }
                 });
 
             migrationBuilder.InsertData(
@@ -997,9 +997,9 @@ namespace xmedical_ehr.Data.Migrations
                 columns: new[] { "Id", "Descripcion" },
                 values: new object[,]
                 {
-                    { "bf38a802-329f-4fc0-bba2-a67e02968ee5", "PATOLOGICOS" },
-                    { "0a7eaf07-34ae-46ac-b70b-b5319683a004", "NO PATOLOGICOS" },
-                    { "05cf3870-1f0d-400e-9cc0-8e77dd3b355b", "PSIQUIATRICOS" }
+                    { "1bbe4827-824c-490d-afa0-35287613cda0", "PATOLOGICOS" },
+                    { "f34c0149-c03d-40aa-83d4-2bb8902dca66", "NO PATOLOGICOS" },
+                    { "3685fc44-8a11-429b-a40a-e98aa0531c8b", "PSIQUIATRICOS" }
                 });
 
             migrationBuilder.InsertData(
@@ -1007,9 +1007,9 @@ namespace xmedical_ehr.Data.Migrations
                 columns: new[] { "Id", "Descripcion" },
                 values: new object[,]
                 {
-                    { "e2633de8-5dd5-4489-8484-d1b6f982685e", "Habitacion 303" },
-                    { "02bdb663-dc1c-4533-a86e-b6efa90a53e4", "Habitacion 302" },
-                    { "910102a7-2fc8-4e7a-a1ac-148cf34ad315", "Habitacion 301" }
+                    { "5f22a5f5-0e66-4043-abae-6fea7ccbd1e6", "Habitacion 303" },
+                    { "c700f3d8-18cf-42f4-b595-51b17a460f53", "Habitacion 302" },
+                    { "eec11d9b-baf0-469e-a1c9-35286668ad42", "Habitacion 301" }
                 });
 
             migrationBuilder.InsertData(
@@ -1017,20 +1017,20 @@ namespace xmedical_ehr.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "Deleted", "Descripcion" },
                 values: new object[,]
                 {
-                    { "4b254d5d-1e92-419b-9f00-e060073ed002", new DateTime(2021, 8, 10, 15, 55, 39, 415, DateTimeKind.Local).AddTicks(1260), false, "ACETAMINOFEN" },
-                    { "c95744c1-bd41-4245-baee-ba995324a05d", new DateTime(2021, 8, 10, 15, 55, 39, 415, DateTimeKind.Local).AddTicks(8787), false, "PARACETAMOL" },
-                    { "99e852d4-1c9d-4031-9b64-7c22dd3883bb", new DateTime(2021, 8, 10, 15, 55, 39, 415, DateTimeKind.Local).AddTicks(8824), false, "SOLUCION SALINA MIXTA 1000ml" }
+                    { "c115e3cd-590e-4738-926e-bc670afdee5a", new DateTime(2021, 8, 11, 14, 59, 3, 470, DateTimeKind.Local).AddTicks(6978), false, "ACETAMINOFEN" },
+                    { "40a1025a-9e26-4b1e-b2fe-70c016e4d363", new DateTime(2021, 8, 11, 14, 59, 3, 474, DateTimeKind.Local).AddTicks(5091), false, "PARACETAMOL" },
+                    { "b30674fa-9c8b-4c5f-936d-333d295ed8a0", new DateTime(2021, 8, 11, 14, 59, 3, 474, DateTimeKind.Local).AddTicks(5175), false, "SOLUCION SALINA MIXTA 1000ml" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Nacionalidades",
                 columns: new[] { "Id", "CodigoInt", "Descripcion" },
-                values: new object[] { "f9076ab2-8e8f-4abc-849c-c401c84fa7ce", null, "Dominicana" });
+                values: new object[] { "5aa1f454-6ad3-42b2-a4b4-2c820e36ace0", null, "Dominicana" });
 
             migrationBuilder.InsertData(
                 table: "Provincias",
                 columns: new[] { "Id", "CodigoInt", "Nombre" },
-                values: new object[] { "4729ab09-56c6-4006-ac97-f88d736238cf", null, "Duarte" });
+                values: new object[] { "be9e2f9a-05a3-41aa-938c-abebcc79d456", null, "Duarte" });
 
             migrationBuilder.InsertData(
                 table: "TiposAtenciones",
@@ -1057,10 +1057,10 @@ namespace xmedical_ehr.Data.Migrations
                 columns: new[] { "Id", "Descripcion" },
                 values: new object[,]
                 {
-                    { "db4876da-47e9-403e-97eb-8322221b938d", "Esposo/a" },
-                    { "4f685201-628d-4000-8c1c-69b7cfd809ce", "Padre" },
-                    { "cc42c566-66f3-4639-a256-59f099dbee32", "Madre" },
-                    { "421505e1-0910-4cda-85fd-d55479352d49", "Hijo/a" }
+                    { "0b95d78c-d284-4f57-b6dc-1ea040beea9d", "Esposo/a" },
+                    { "3709fc66-8389-4749-94ab-0d8c14843c74", "Padre" },
+                    { "499d39af-d18d-4677-936f-fe3fd29a2731", "Madre" },
+                    { "31c61022-8996-4e76-a584-b203763b8e35", "Hijo/a" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -65,7 +65,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("int");
             
             builder.Property(x => x.SaturacionOxigeno)
-                .HasColumnType("int)");
+                .HasColumnType("int");
 
             builder.Property(x => x.OtrosParametros)
                 .HasColumnType("varchar(1024)");
@@ -77,7 +77,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Deleted)
-                .HasColumnType("tinyint");
+                .HasColumnType("tinyint(1)");
             
             builder.Property(x => x.DeletedBy)
                 .HasColumnType("varchar(255)");
