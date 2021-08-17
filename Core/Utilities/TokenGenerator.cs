@@ -6,7 +6,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace xmedicalehr.api.Core.Util
+namespace xmedicalehr.api.Core.Utilities
 {
     public class TokenGenerator
     {
@@ -15,7 +15,7 @@ namespace xmedicalehr.api.Core.Util
         {
             _configuration = configuration;
         }
-        public string CreateToken(Account.User user, List<Claim> claims)
+        public string CreateToken(Account.User user, IList<Claim> claims)
         {
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
                 .GetBytes(_configuration.GetSection("Jwt:Key").Value));

@@ -21,10 +21,12 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(100)");
 
             builder.Property(x => x.PrimerApellido)
-                .HasColumnType("varchar(100)");
+                .HasColumnType("varchar(100)")
+                .IsRequired();
 
             builder.Property(x => x.SegundoApellido)
-                .HasColumnType("varchar(100)");
+                .HasColumnType("varchar(100)")
+                .IsRequired();
 
             builder.Property(x => x.Sexo)
                 .HasColumnType("char(1)");
@@ -45,7 +47,8 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(100)");
 
             builder.Property(x => x.Cedula)
-                .HasColumnType("varchar(20)");
+                .HasColumnType("varchar(20)")
+                .IsRequired();
 
             builder.Property(x => x.Direccion)
                 .HasColumnType("varchar(250)");

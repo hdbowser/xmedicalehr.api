@@ -8,7 +8,7 @@ namespace xmedicalehr.api.Core
         public List<string> Errors { get; set; }
         public List<string> Warnings { get; set; }
         public string Data { get; set; }
-        public bool Suscceed
+        public bool Succeed
         {
             get
             {

@@ -17,7 +17,7 @@ namespace xmedicalehr.api.Models
         public string Nombres { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
-        public char Sexo { get; set; }
+        public string Sexo { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string EstadoCivil { get; set; }
         public string Telefono { get; set; }

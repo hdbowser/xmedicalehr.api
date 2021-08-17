@@ -17,7 +17,15 @@ namespace xmedicalehr.api.Data.Migrations.Configurations
                 new Role{
                     Id = Guid.NewGuid().ToString(),
                     Name = "admin",
-                    DisplayName = "Administrador"
+                    DisplayName = "Administrador",
+                    NormalizedName = "ADMINISTRADOR"
+                },
+
+                new Role{
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "user",
+                    DisplayName = "User",
+                    NormalizedName = "USER"
                 }
             });
         }

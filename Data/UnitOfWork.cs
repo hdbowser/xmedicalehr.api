@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Core;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Repositories;
 
 namespace xmedicalehr.api.Data
 {
@@ -12,6 +13,14 @@ namespace xmedicalehr.api.Data
         private readonly AppDbContext _dbContext;
         private readonly IConfiguration _configuration;
         private readonly RepositoryResult _result;
+
+        public PacienteRepository PacienteRepository
+        {
+            get
+            {
+                return new PacienteRepository(_dbContext, _configuration, _result);
+            }
+        }
 
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
