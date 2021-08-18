@@ -64,13 +64,15 @@ namespace xmedicalehr.api.Data
             }
             catch (System.Exception ex)
             {
-                _result.Errors.Add($"No fue posible realizar la operacion. {ex.Message}");
+                _result.Errors.Add($"No fue posible realizar la operacion.");
                 if (ex.InnerException != null)
                 {
+                    _result.Errors.Add(ex.InnerException.Message);
                     _logger.Error(ex.InnerException.Message);
                 }
                 else
                 {
+                    _result.Errors.Add(ex.Message);
                     _logger.Error(ex.Message);
                 }
             }

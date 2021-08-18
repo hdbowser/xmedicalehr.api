@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +29,18 @@ namespace xmedicalehr.api.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("id")]
+        public async Task<ActionResult> GetAsync(string id)
+        {
+            var result = await _unitOfWork.AtencionMedicaRepository.FindByIdAsync(id);
+
+            return new JsonResult(result);
+        }
+
         [HttpPost("")]
         public async Task<ActionResult> PostAsync([FromBody] AtencionMedica model)
         {
+            // model.CreatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await _unitOfWork.AtencionMedicaRepository.AddAsync(model);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
@@ -50,6 +60,7 @@ namespace xmedicalehr.api.Controllers
                 return NotFound();
             }
 
+            // atencion.UpdatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             atencion.PacienteId = model.PacienteId;
             atencion.TipoId = model.TipoId;
             atencion.AseguradoraId = model.AseguradoraId;
@@ -68,9 +79,30 @@ namespace xmedicalehr.api.Controllers
             {
                 return StatusCode(500, new { result.Errors });
             }
+
+            return new JsonResult("Done");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAsync(string id)
+        {
+            var atencion = (AtencionMedica) await _unitOfWork.AtencionMedicaRepository.FindByIdAsync(id);
+            if (atencion == null)
+            {
+                return NotFound();
+            }
+
+            // atencion.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            _unitOfWork.AtencionMedicaRepository.Delete(atencion);
+            var result = await _unitOfWork.SaveAsync();
+            if (!result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
         
             return new JsonResult("Done");
-    }
+        }
+        
 
-}
+    }
 }
