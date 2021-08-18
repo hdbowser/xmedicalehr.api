@@ -14,6 +14,7 @@ namespace xmedicalehr.api.Models
             NotasEnfermeria = new HashSet<NotaEnfermeria>();
             Medicaciones = new HashSet<Medicacion>();
         }
+        
         public string Id { get; set; }
         public string PacienteId { get; set; }
         public string TipoId { get; set; }
@@ -26,6 +27,8 @@ namespace xmedicalehr.api.Models
         public string NombreFinanciador { get; set; }
         public string TipoFinanciamiento { get; set; }
         public byte[] FirmaPaciente { get; set; }
+
+
         public DateTime CreatedAt { get; set; }
         public string CreatedBy { get; set; }
         public bool Deleted { get; set; }

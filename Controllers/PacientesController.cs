@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -32,6 +33,7 @@ namespace xmedicalehr.api.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] Paciente model)
         {
+            // model.CreatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await _unitOfWork.PacienteRepository.AddAsync(model);
             var result = await _unitOfWork.SaveAsync();
             if(!result.Succeed)
@@ -51,28 +53,55 @@ namespace xmedicalehr.api.Controllers
                 return NotFound();
             }
             
-
+            // paciente.UpdatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             paciente.Nombres = model.Nombres;
             paciente.PrimerApellido = model.PrimerApellido;
+            paciente.EstadoCivil = model.EstadoCivil;
             paciente.Sexo = model.Sexo;
             paciente.FechaNacimiento = model.FechaNacimiento;
             paciente.Cedula = model.Cedula;
+            paciente.Email = model.Email;
             paciente.Celular = model.Celular;
             paciente.Telefono = model.Telefono;
+            paciente.Direccion = model.Direccion;
             paciente.Nota = model.Nota;
             paciente.NSS = model.NSS;
             paciente.NumAsegurado = model.NumAsegurado;
             paciente.Estatura = model.Estatura;
             paciente.UnidadEstatura = model.UnidadEstatura;
             paciente.Ciudad = model.Ciudad;
-            paciente.Email = model.Email;
-            paciente.EstadoCivil = model.EstadoCivil;
             paciente.ProvinciaId = model.ProvinciaId;
             paciente.NacionalidadId = model.NacionalidadId;
             paciente.AseguradoraId = model.AseguradoraId;
 
-            return NoContent();
+            _unitOfWork.PacienteRepository.Update(paciente);
+            var result = await _unitOfWork.SaveAsync();
+            if (!result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
+            return new JsonResult("Done");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAsync(string id)
+        {
+            var paciente = (Paciente) await _unitOfWork.PacienteRepository.FindByIdAsync(id);
+            if(paciente == null)
+            {
+                return NotFound();
+            }
+
+            // paciente.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            _unitOfWork.PacienteRepository.Delete(paciente);
+            var result = await _unitOfWork.SaveAsync();
+            if (result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
+            return new JsonResult("Done");
+        }
+        
         
     }
 }

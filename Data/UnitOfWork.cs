@@ -22,6 +22,30 @@ namespace xmedicalehr.api.Data
             }
         }
 
+        public HabitacionRepository HabitacionRepository
+        {
+            get
+            {
+                return new HabitacionRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public CamaRepository CamaRepository
+        {
+            get
+            {
+                return new CamaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public AtencionMedicaRepository AtencionMedicaRepository
+        {
+            get
+            {
+                return new AtencionMedicaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
@@ -40,7 +64,7 @@ namespace xmedicalehr.api.Data
             }
             catch (System.Exception ex)
             {
-                _result.Errors.Add("No fue posible realizar la operacion");
+                _result.Errors.Add($"No fue posible realizar la operacion. {ex.Message}");
                 if (ex.InnerException != null)
                 {
                     _logger.Error(ex.InnerException.Message);

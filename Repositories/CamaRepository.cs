@@ -7,8 +7,9 @@ using xmedicalehr.api.Data;
 using xmedicalehr.api.Core;
 using xmedicalehr.api.Repositories;
 using xmedicalehr.api.Models;
+using System;
 
-namespace s.api.Repositories
+namespace xmedicalehr.api.Repositories
 {
     public class CamaRepository : Repository
     {
@@ -20,6 +21,7 @@ namespace s.api.Repositories
         {
             try
             {
+                model.Id = Guid.NewGuid().ToString();
                 await _db.Camas.AddAsync(model);
             }
             catch (System.Exception ex)
