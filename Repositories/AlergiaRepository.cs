@@ -24,7 +24,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -44,7 +44,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -65,7 +65,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -77,7 +77,7 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(string pacienteId, int sustanciaId)
+        public async Task<object> FindByIdAsync(string pacienteId, string sustanciaId)
         {
             object obj = null;
             try
@@ -87,7 +87,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -99,16 +99,23 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(AlergiaPaciente model)
+        public void Delete(AlergiaPaciente model, bool disable = true)
         {
             try
             {
-                _db.AlergiasPacientes.Update(model);
+                if (disable)
+                {
+                    _db.AlergiasPacientes.Update(model);
+                }
+                else
+                {
+                    _db.AlergiasPacientes.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }

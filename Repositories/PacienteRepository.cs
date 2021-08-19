@@ -27,7 +27,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -48,7 +48,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -69,7 +69,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -91,7 +91,7 @@ namespace xmedicalehr.api.Repositories
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }
@@ -103,18 +103,25 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Paciente model)
+        public void Delete(Paciente model, bool disable = true)
         {
             try
             {
-                model.Deleted = true;
-                model.DeletedAt = DateTime.Now;
-                _db.Pacientes.Update(model);
+                if (disable)
+                {
+                    model.Deleted = true;
+                    model.DeletedAt = DateTime.Now;
+                    _db.Pacientes.Update(model);
+                }
+                else
+                {
+                    _db.Pacientes.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {
                 _result.Errors.Add("No fue posible realizar la operacion");
-                if(ex.InnerException != null)
+                if (ex.InnerException != null)
                 {
                     _log.Error(ex.InnerException.Message);
                 }

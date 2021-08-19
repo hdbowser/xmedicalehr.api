@@ -100,11 +100,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(TipoNotaMedica model)
+        public void Delete(TipoNotaMedica model, bool disable = true)
         {
             try
             {
-                _db.TiposNotasMedicas.Update(model);
+                if (disable)
+                {
+                    _db.TiposNotasMedicas.Update(model);
+                }
+                else
+                {
+                    _db.TiposNotasMedicas.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

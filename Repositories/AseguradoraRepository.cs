@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Aseguradora model)
+        public void Delete(Aseguradora model, bool disable = true)
         {
             try
             {
-                _db.Aseguradoras.Update(model);
+                if (disable)
+                {
+                    _db.Aseguradoras.Update(model);
+                }
+                else
+                {
+                    _db.Aseguradoras.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

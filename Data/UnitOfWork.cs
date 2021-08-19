@@ -46,6 +46,22 @@ namespace xmedicalehr.api.Data
             }
         }
 
+        public AlergiaRepository AlergiaRepository
+        {
+            get
+            {
+                return new AlergiaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public AseguradoraRepository AseguradoraRepository
+        {
+            get
+            {
+                return new AseguradoraRepository(_dbContext, _configuration, _result);
+            }
+        }
+
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;

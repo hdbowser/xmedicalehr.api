@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Sustancia model)
+        public void Delete(Sustancia model, bool disable = true)
         {
             try
             {
-                _db.Sustancias.Update(model);
+                if (disable)
+                {
+                    _db.Sustancias.Update(model);
+                }
+                else
+                {
+                    _db.Sustancias.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

@@ -102,11 +102,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(NotaMedicaCustomField model)
+        public void Delete(NotaMedicaCustomField model, bool disable = true)
         {
             try
             {
-                _db.NotaMedicaCustomFields.Update(model);
+                if (disable)
+                {
+                    _db.NotaMedicaCustomFields.Update(model);
+                }
+                else
+                {
+                    _db.NotaMedicaCustomFields.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

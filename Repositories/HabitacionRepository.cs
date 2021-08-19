@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Habitacion model)
+        public void Delete(Habitacion model, bool disable = true)
         {
             try
             {
-                _db.Habitaciones.Update(model);
+                if (disable)
+                {
+                    _db.Habitaciones.Update(model);
+                }
+                else
+                {
+                    _db.Habitaciones.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

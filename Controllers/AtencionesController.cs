@@ -32,6 +32,11 @@ namespace xmedicalehr.api.Controllers
         [HttpGet("id")]
         public async Task<ActionResult> GetAsync(string id)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
             var result = await _unitOfWork.AtencionMedicaRepository.FindByIdAsync(id);
 
             return new JsonResult(result);
@@ -54,6 +59,11 @@ namespace xmedicalehr.api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(string id, [FromBody] AtencionMedica model)
         {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+
             var atencion = (AtencionMedica)await _unitOfWork.AtencionMedicaRepository.FindByIdAsync(id);
             if (atencion == null)
             {
@@ -84,8 +94,13 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAsync(string id)
+        public async Task<ActionResult> DeleteAsync(string id, bool disable = true)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            
             var atencion = (AtencionMedica) await _unitOfWork.AtencionMedicaRepository.FindByIdAsync(id);
             if (atencion == null)
             {

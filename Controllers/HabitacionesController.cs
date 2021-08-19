@@ -62,6 +62,31 @@ namespace xmedicalehr.api.Controllers
         
             return new JsonResult("Done");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAsync(string id, bool disable = true)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var hab = (Habitacion) await _unitOfWork.HabitacionRepository.FindByIdAsync(id);
+            if (hab == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.HabitacionRepository.Delete(hab);
+            var result = await _unitOfWork.SaveAsync();
+            if (!result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
+        
+            return new JsonResult("Done");
+        }
+        
         
     }
 }

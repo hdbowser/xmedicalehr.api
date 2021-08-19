@@ -28,6 +28,18 @@ namespace xmedicalehr.api.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAsync(string id)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var result = await _unitOfWork.CamaRepository.FindByIdAsync(id);
+            return new JsonResult(result);
+        }
+
         [HttpPost("")]
         public async Task<ActionResult> PostAsync([FromBody] Cama model)
         {
@@ -44,6 +56,11 @@ namespace xmedicalehr.api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(string id, [FromBody] Cama model)
         {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
             var cama = (Cama) await _unitOfWork.CamaRepository.FindByIdAsync(id);
             if (cama == null)
             {
@@ -60,6 +77,31 @@ namespace xmedicalehr.api.Controllers
         
             return new JsonResult("Done");
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteAsync(string id, bool disable = true)
+        {
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var cama = (Cama) await _unitOfWork.CamaRepository.FindByIdAsync(id);
+            if(cama == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.CamaRepository.Delete(cama);
+            var result = await _unitOfWork.SaveAsync();
+            if (!result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
+        
+            return new JsonResult("Done");
+        }
+        
         
         
     }

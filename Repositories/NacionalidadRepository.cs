@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Nacionalidad model)
+        public void Delete(Nacionalidad model, bool disable = true)
         {
             try
             {
-                _db.Nacionalidades.Update(model);
+                if (disable)
+                {
+                    _db.Nacionalidades.Update(model);
+                }
+                else
+                {
+                    _db.Nacionalidades.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

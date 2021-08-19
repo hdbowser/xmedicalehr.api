@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(TipoParentesco model)
+        public void Delete(TipoParentesco model, bool disable = true)
         {
             try
             {
-                _db.TiposParentescos.Update(model);
+                if (disable)
+                {
+                    _db.TiposParentescos.Update(model);
+                }
+                else
+                {
+                    _db.TiposParentescos.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

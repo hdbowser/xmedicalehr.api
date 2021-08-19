@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Provincia model)
+        public void Delete(Provincia model, bool disable = true)
         {
             try
             {
-                _db.Provincias.Update(model);
+                if (disable)
+                {
+                    _db.Provincias.Update(model);
+                }
+                else
+                {
+                    _db.Provincias.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

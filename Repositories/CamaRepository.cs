@@ -102,11 +102,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Cama model)
+        public void Delete(Cama model, bool disable = true)
         {
             try
             {
-                _db.Camas.Update(model);
+                if (disable)
+                {
+                    _db.Camas.Update(model);
+                }
+                else
+                {
+                    _db.Camas.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

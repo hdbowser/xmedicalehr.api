@@ -84,7 +84,7 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAsync(string id)
+        public async Task<ActionResult> DeleteAsync(string id, bool disable = true)
         {
             var paciente = (Paciente) await _unitOfWork.PacienteRepository.FindByIdAsync(id);
             if(paciente == null)

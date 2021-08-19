@@ -100,11 +100,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(TipoAtencion model)
+        public void Delete(TipoAtencion model, bool disable = true)
         {
             try
             {
-                _db.TiposAtenciones.Update(model);
+                if (disable)
+                {
+                    _db.TiposAtenciones.Update(model);
+                }
+                else
+                {
+                    _db.TiposAtenciones.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

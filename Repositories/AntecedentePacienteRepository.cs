@@ -102,13 +102,20 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(AntecedentePaciente model)
+        public void Delete(AntecedentePaciente model, bool disable = true)
         {
             try
             {
-                model.Deleted = true;
-                model.DeletedAt = DateTime.Now;
-                _db.AntecedetesPacientes.Update(model);
+                if (disable)
+                {    
+                    model.Deleted = true;
+                    model.DeletedAt = DateTime.Now;
+                    _db.AntecedetesPacientes.Update(model);
+                }
+                else
+                {
+                    _db.AntecedetesPacientes.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(GrupoAntecedente model)
+        public void Delete(GrupoAntecedente model, bool disable = true)
         {
             try
             {
-                _db.GruposAntecedentes.Update(model);
+                if (disable)
+                {
+                    _db.GruposAntecedentes.Update(model);
+                }
+                else
+                {
+                    _db.GruposAntecedentes.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {

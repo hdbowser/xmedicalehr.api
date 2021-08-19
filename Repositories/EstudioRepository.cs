@@ -101,11 +101,18 @@ namespace xmedicalehr.api.Repositories
             return obj;
         }
 
-        public void Delete(Estudio model)
+        public void Delete(Estudio model, bool disable = true)
         {
             try
             {
-                _db.Estudios.Update(model);
+                if (disable)
+                {
+                    _db.Estudios.Update(model);
+                }
+                else
+                {
+                    _db.Estudios.Remove(model);
+                }
             }
             catch (System.Exception ex)
             {
