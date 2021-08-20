@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Core.FilterClass;
 
 namespace xmedicalehr.api.Repositories
 {
@@ -59,12 +60,57 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(AtencionFilter filter = null)
         {
-            var objList = new List<object>();
             try
             {
-                objList = await _db.AtencionesMedicas.Cast<object>().ToListAsync();
+                var objList = await _db.AtencionesMedicas
+                    .Include(x => x.Paciente)
+                    .Include(x => x.Medico)
+                    .Include(x => x.Creator)
+                    .Include(x => x.Aseguradora)
+                    .Include(x => x.Cama)
+                    .Where(x =>!x.Deleted)
+                    .Select(x => new
+                    {
+                        x.Id,
+                        x.PacienteId,
+                        NombrePaciente = $"{x.Paciente.Nombres} {x.Paciente.PrimerApellido} {x.Paciente.SegundoApellido}",
+                        x.EdadPaciente,
+                        Aseguradora = x.Aseguradora.Nombre,
+                        Cama = x.Cama.Descripcion,
+                        x.Origen,
+                        x.NombreFinanciador,
+                        x.TipoFinanciamiento,
+                        x.FirmaPaciente,
+                        NombreMedico = x.Medico.Name,
+                        x.FechaIngreso,
+                        x.CreatedAt,
+                        CreatedBy = x.Creator.Name,
+                        x.UpdatedAt,
+                        x.DeletedAt
+                    })
+                    .ToListAsync();
+                
+
+                if (string.IsNullOrEmpty(filter.PacienteId) || string.IsNullOrWhiteSpace(filter.PacienteId))
+                {
+                    objList.Where(x => x.PacienteId.Equals(filter.PacienteId));
+                }
+                if (filter.CreatedAt != null)
+                {
+                    objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.UpdatedAt != null)
+                {
+                    objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.DeletedAt != null)
+                {
+                    objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                }
+
+                return objList.Cast<object>().ToList();
             }
             catch (System.Exception ex)
             {
@@ -78,7 +124,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string id)
@@ -131,5 +177,6 @@ namespace xmedicalehr.api.Repositories
                 }
             }
         }
+
     }
 }

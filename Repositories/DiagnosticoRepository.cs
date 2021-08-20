@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Core.FilterClass;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 
@@ -61,12 +62,44 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(DiagnosticoFilter filter)
         {
-            var objList = new List<object>();
             try
             {
-                objList = await _db.Diagnosticos.Cast<object>().ToListAsync();
+                var objList = await _db.Diagnosticos
+                    .Include(x => x.NotaMedica)
+                    .Include(x => x.Enfermedad)
+                    .Where(x => !x.Deleted)
+                    .Select(x => new {
+                        x.NotaMedicaId,
+                        x.NumItem,
+                        x.Enfermedad.Descripcion,
+                        x.Comentario,
+                        x.Deleted,
+                        x.CreatedAt,
+                        x.UpdatedAt,
+                        x.DeletedAt
+                    })
+                    .ToListAsync();
+                
+                if (string.IsNullOrEmpty(filter.NotaMedicaId) || string.IsNullOrWhiteSpace(filter.NotaMedicaId))
+                {
+                    objList.Where(x => x.NotaMedicaId.Equals(filter.NotaMedicaId));
+                }
+                if (filter.CreatedAt != null)
+                {
+                    objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.UpdatedAt != null)
+                {
+                    objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.DeletedAt != null)
+                {
+                    objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                }
+
+                return objList.Cast<object>().ToList();
             }
             catch (System.Exception ex)
             {
@@ -80,7 +113,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string notaMedicaId, int numItem)

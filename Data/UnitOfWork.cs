@@ -62,6 +62,30 @@ namespace xmedicalehr.api.Data
             }
         }
 
+        public NotaMedicaRepository NotaMedicaRepository
+        {
+            get
+            {
+                return new NotaMedicaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public NotaEnfermeriaRepository NotaEnfermeriaRepository
+        {
+            get
+            {
+                return new NotaEnfermeriaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public DiagnosticoRepository DiagnosticoRepository
+        {
+            get
+            {
+                return new DiagnosticoRepository(_dbContext, _configuration, _result);
+            }
+        }
+
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;

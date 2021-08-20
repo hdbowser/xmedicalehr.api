@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Core.FilterClass;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 
@@ -59,12 +60,65 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(NotaMedicaFilter filter)
         {
-            var objList = new List<object>();
             try
             {
-                objList = await _db.NotasMedica.Cast<object>().ToListAsync();
+                var objList = await _db.NotasMedica
+                    .Include(x => x.AtencionMedica)
+                    .Include(x => x.TipoNota)
+                    .Include(x => x.Medico)
+                    .Where(x => !x.Deleted)
+                    .Select(x => new{
+                        x.Id,
+                        x.AtencionId,
+                        x.MedicoId,
+                        x.Medico.Name,
+                        x.MotivoConsulta,
+                        x.MotivoEgreso,
+                        x.HistoriaEnfermedad,
+                        x.Nota,
+                        x.TipoNota.Descripcion,
+                        x.DeOrden,
+                        x.Dieta,
+                        x.ExamenFisico,
+                        x.Observaciones,
+                        x.Pronostico,
+                        x.Fecha,
+                        x.Peso,
+                        x.UnidadPeso,
+                        x.EscalaGlasgow,
+                        x.EscalaDolor,
+                        x.SaturacionOxigeno,
+                        x.OtrosParametros,
+                        x.CreatedAt,
+                        x.UpdatedAt,
+                        x.DeletedAt
+                    })
+                    .ToListAsync();
+                
+                if (string.IsNullOrEmpty(filter.AtencionId) || string.IsNullOrWhiteSpace(filter.AtencionId))
+                {
+                    objList.Where(x => x.AtencionId.Equals(filter.AtencionId));
+                }
+                if (string.IsNullOrEmpty(filter.MedicoId) || string.IsNullOrWhiteSpace(filter.MedicoId))
+                {
+                    objList.Where(x => x.MedicoId.Equals(filter.MedicoId));
+                }
+                if (filter.CreatedAt != null)
+                {
+                    objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.UpdatedAt != null)
+                {
+                    objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.DeletedAt != null)
+                {
+                    objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                }
+
+                return objList.Cast<object>().ToList();
             }
             catch (System.Exception ex)
             {
@@ -78,7 +132,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string id)

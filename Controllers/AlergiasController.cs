@@ -28,7 +28,7 @@ namespace xmedicalehr.api.Controllers
             return new JsonResult(result);
         }
 
-        [HttpGet("")]
+        [HttpGet("{pacienteId}/{sustanciaId}")]
         public async Task<IActionResult> GetAsync(string pacienteId, string sustanciaId)
         {
             if (string.IsNullOrEmpty(pacienteId) || 
@@ -56,8 +56,7 @@ namespace xmedicalehr.api.Controllers
             return Ok();
         }
 
-
-        [HttpPut("")]
+        [HttpPut("{pacienteId}/{sustanciaId}")]
         public async Task<IActionResult> PutAsync(string pacienteId, string sustanciaId, [FromBody] AlergiaPaciente model)
         {
             if (string.IsNullOrEmpty(pacienteId) || 
@@ -84,8 +83,7 @@ namespace xmedicalehr.api.Controllers
         
             return new JsonResult("Done");
         }
-        
-        [HttpDelete("")]
+        [HttpDelete("{pacienteId}/{sustanciaId}")]
         public async Task<ActionResult> DeleteAsync(string pacienteId, string sustanciaId, bool disable = true)
         {
             if (string.IsNullOrEmpty(pacienteId) || 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Core.FilterClass;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 
@@ -59,12 +60,47 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(NotaEnfermeriaFilter filter)
         {
-            var objList = new List<object>();
             try
             {
-                objList = await _db.NotasEnfermeria.Cast<object>().ToListAsync();
+                var objList = await _db.NotasEnfermeria
+                    .Include(x => x.AtencionMedica)
+                    .Include(x => x.Enfermera)
+                    .Where(x => !x.Deleted)
+                    .Select(x => new {
+                        x.Id,
+                        x.AtencionId,
+                        x.HabitusExterior,
+                        x.Observaciones,
+                        x.Enfermera.Name,
+                        x.Fecha,
+                        x.CreatedBy,
+                        x.CreatedAt,
+                        x.UpdatedAt,
+                        x.DeletedAt,
+                        x.Deleted
+                    })
+                    .ToListAsync();
+
+                if (string.IsNullOrEmpty(filter.AtencionId) || string.IsNullOrWhiteSpace(filter.AtencionId))
+                {
+                    objList.Where(x => x.AtencionId.Equals(filter.AtencionId));
+                }
+                if (filter.CreatedAt != null)
+                {
+                    objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.UpdatedAt != null)
+                {
+                    objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
+                }
+                if (filter.DeletedAt != null)
+                {
+                    objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                }
+
+                return objList.Cast<object>().ToList();
             }
             catch (System.Exception ex)
             {
@@ -78,7 +114,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string id)

@@ -30,6 +30,18 @@ namespace xmedicalehr.api.Controllers
             return new JsonResult(result);
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetAsync(string id)
+        {
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest();
+            }
+            
+            var result = await _unitOfWork.PacienteRepository.FindByIdAsync(id);
+            return new JsonResult(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] Paciente model)
         {

@@ -11,6 +11,7 @@ namespace xmedicalehr.api.Models
             SignosVitales = new HashSet<SignosVitales>();
             Medicaciones = new HashSet<Medicacion>();
         }
+        
         public string Id { get; set; }
         public string AtencionId { get; set; }
         public string HabitusExterior { get; set; }

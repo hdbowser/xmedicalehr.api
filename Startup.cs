@@ -90,7 +90,7 @@ namespace xmedicalehr.api
                     builder.AllowAnyHeader();
                     builder.AllowAnyMethod();
                     builder.AllowAnyOrigin();
-                    builder.WithOrigins("http://localhost:5005")
+                    builder.WithOrigins("http://localhost:5000", "http://localhost:5005")
                         .AllowCredentials();
                 });
             });
