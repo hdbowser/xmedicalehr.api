@@ -81,7 +81,7 @@ namespace xmedicalehr.api.Controllers
             {
                 return StatusCode(500, new { result.Errors });
             }
-            return new JsonResult("Done");
+            return NoContent();
         }
 
         [HttpDelete("{notaMedicaId}/{numItem}")]
@@ -98,13 +98,13 @@ namespace xmedicalehr.api.Controllers
                 return NotFound();
             }
 
-            _unitOfWork.DiagnosticoRepository.Delete(diag);
+            _unitOfWork.DiagnosticoRepository.Delete(diag, disable);
             var result = await _unitOfWork.SaveAsync();
             if(!result.Succeed)
             {
                 return StatusCode(500, new { result.Errors });
             }
-            return new JsonResult("Done");
+            return NoContent();
         }
     }
 }

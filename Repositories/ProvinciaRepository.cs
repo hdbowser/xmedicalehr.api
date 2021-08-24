@@ -62,7 +62,9 @@ namespace xmedicalehr.api.Repositories
             var objList = new List<object>();
             try
             {
-                objList = await _db.Provincias.Cast<object>().ToListAsync();
+                objList = await _db.Provincias
+                    .Cast<object>()
+                    .ToListAsync();
             }
             catch (System.Exception ex)
             {
@@ -79,7 +81,7 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(int id)
+        public async Task<object> FindByIdAsync(string id)
         {
             object obj = null;
             try

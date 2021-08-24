@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using xmedicalehr.api.Core.FilterClass;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 
@@ -13,19 +11,19 @@ namespace xmedicalehr.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NotasEnfermeriaController : ControllerBase
+    public class ProvinciasController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public NotasEnfermeriaController(AppDbContext dbContext, IConfiguration configuration)
+        public ProvinciasController(AppDbContext dbContext, IConfiguration configuration)
         {
             _unitOfWork = new UnitOfWork(dbContext, configuration);
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> GetAsync([FromQuery] NotaEnfermeriaFilter filter)
+        public async Task<ActionResult> GetAsync()
         {
-            var result = await _unitOfWork.NotaEnfermeriaRepository.FilterAsync(filter);
+            var result = await _unitOfWork.ProvinciaRepository.FilterAsync();
             return new JsonResult(result);
         }
 
@@ -37,15 +35,14 @@ namespace xmedicalehr.api.Controllers
                 return BadRequest();
             }
 
-            var result = await _unitOfWork.NotaEnfermeriaRepository.FindByIdAsync(id);
-            return new JsonResult(result);
+            var Provincia = await _unitOfWork.ProvinciaRepository.FindByIdAsync(id);
+            return new JsonResult(Provincia);
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> PostAsync([FromBody] NotaEnfermeria model)
+        public async Task<ActionResult> PostAsync([FromBody] Provincia model)
         {
-            // model.CreatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await _unitOfWork.NotaEnfermeriaRepository.AddAsync(model);
+            await _unitOfWork.ProvinciaRepository.AddAsync(model);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {
@@ -56,27 +53,23 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(string id, [FromBody] NotaEnfermeria model)
+        public async Task<IActionResult> PutAsync(string id, [FromBody] Provincia model)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest();
             }
 
-            var nota = (NotaEnfermeria) await _unitOfWork.NotaEnfermeriaRepository.FindByIdAsync(id);
-            if (nota == null)
+            var Provincia = (Provincia) await _unitOfWork.ProvinciaRepository.FindByIdAsync(id);
+            if (Provincia == null)
             {
                 return NotFound();
             }
 
-            // nota.UpdatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            nota.AtencionId = model.AtencionId;
-            nota.HabitusExterior = model.HabitusExterior;
-            nota.Observaciones = model.Observaciones;
-            nota.EnfermeraId = model.EnfermeraId;
-            nota.Fecha = model.Fecha;
+            Provincia.Nombre = model.Nombre;
+            Provincia.CodigoInt = model.CodigoInt;
 
-            _unitOfWork.NotaEnfermeriaRepository.Update(nota);
+            _unitOfWork.ProvinciaRepository.Update(Provincia);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {
@@ -93,14 +86,13 @@ namespace xmedicalehr.api.Controllers
                 return BadRequest();
             }
 
-            var nota = (NotaEnfermeria) await _unitOfWork.NotaEnfermeriaRepository.FindByIdAsync(id);
-            if (nota == null)
+            var Provincia = (Provincia) await _unitOfWork.ProvinciaRepository.FindByIdAsync(id);
+            if (Provincia == null)
             {
                 return NotFound();
             }
 
-            // nota.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            _unitOfWork.NotaEnfermeriaRepository.Delete(nota, disable);
+            _unitOfWork.ProvinciaRepository.Delete(Provincia, disable);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {

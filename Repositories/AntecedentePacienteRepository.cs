@@ -22,7 +22,7 @@ namespace xmedicalehr.api.Repositories
             try
             {
                 model.CreatedAt = DateTime.Now;
-                await _db.AntecedetesPacientes.AddAsync(model);
+                await _db.AntecedentesPacientes.AddAsync(model);
             }
             catch (System.Exception ex)
             {
@@ -43,7 +43,7 @@ namespace xmedicalehr.api.Repositories
             try
             {
                 model.UpdatedAt = DateTime.Now;
-                _db.AntecedetesPacientes.Update(model);
+                _db.AntecedentesPacientes.Update(model);
             }
             catch (System.Exception ex)
             {
@@ -63,7 +63,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
-                var objList = await _db.AntecedetesPacientes.ToListAsync();
+                var objList = await _db.AntecedentesPacientes.ToListAsync();
 
                 if (string.IsNullOrEmpty(filter.PacienteId))
                 {
@@ -92,7 +92,7 @@ namespace xmedicalehr.api.Repositories
             object obj = null;
             try
             {
-                obj = await _db.AntecedetesPacientes.FindAsync(pacienteId, tipoAntecedenteId);
+                obj = await _db.AntecedentesPacientes.FindAsync(pacienteId, tipoAntecedenteId);
             }
             catch (System.Exception ex)
             {
@@ -117,11 +117,11 @@ namespace xmedicalehr.api.Repositories
                 {    
                     model.Deleted = true;
                     model.DeletedAt = DateTime.Now;
-                    _db.AntecedetesPacientes.Update(model);
+                    _db.AntecedentesPacientes.Update(model);
                 }
                 else
                 {
-                    _db.AntecedetesPacientes.Remove(model);
+                    _db.AntecedentesPacientes.Remove(model);
                 }
             }
             catch (System.Exception ex)

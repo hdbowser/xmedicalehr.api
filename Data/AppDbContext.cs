@@ -10,7 +10,7 @@ namespace xmedicalehr.api.Data
     public class AppDbContext : IdentityDbContext<User, Role, string>
     {
         public DbSet<AlergiaPaciente> AlergiasPacientes { get; set; }
-        public DbSet<AntecedentePaciente> AntecedetesPacientes { get; set; }
+        public DbSet<AntecedentePaciente> AntecedentesPacientes { get; set; }
         public DbSet<Aseguradora> Aseguradoras { get; set; }
         public DbSet<GrupoAntecedente> GruposAntecedentes { get; set; }
         public DbSet<Nacionalidad> Nacionalidades { get; set; }

@@ -49,7 +49,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, new { result.Errors });
             }
 
-            return Ok(model.Id);
+            return Ok(new { model.Id });
         }
 
         [HttpPut("{id}")]

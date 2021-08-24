@@ -101,7 +101,7 @@ namespace xmedicalehr.api.Controllers
 
             var roleAdded = await _userManager.AddToRoleAsync(user, "user");
 
-            return Ok(user.Id);
+            return Ok(new { user.Id });
         }
     }
 }

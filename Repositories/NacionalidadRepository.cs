@@ -62,7 +62,14 @@ namespace xmedicalehr.api.Repositories
             var objList = new List<object>();
             try
             {
-                objList = await _db.Nacionalidades.Cast<object>().ToListAsync();
+                objList = await _db.Nacionalidades
+                    .Select(X => new {
+                        X.Id,
+                        X.CodigoInt,
+                        Nombre = X.Descripcion
+                    })
+                    .Cast<object>()
+                    .ToListAsync();
             }
             catch (System.Exception ex)
             {

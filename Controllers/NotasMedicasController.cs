@@ -52,7 +52,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, new { result.Errors });
             }
 
-            return Ok(model.Id);
+            return Ok(new { model.Id });
         }
 
         [HttpPut("{id}")]
@@ -98,7 +98,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, new { result.Errors });
             }
 
-            return new JsonResult("Done");
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
@@ -115,8 +115,8 @@ namespace xmedicalehr.api.Controllers
                 return NotFound();
             }
 
-            nota.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            _unitOfWork.NotaMedicaRepository.Delete(nota);
+            // nota.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            _unitOfWork.NotaMedicaRepository.Delete(nota, disable);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {

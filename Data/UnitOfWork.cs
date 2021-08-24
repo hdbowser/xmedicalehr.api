@@ -94,6 +94,30 @@ namespace xmedicalehr.api.Data
             }
         }
 
+        public NacionalidadRepository NacionalidadRepository
+        {
+            get
+            {
+                return new NacionalidadRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public ProvinciaRepository ProvinciaRepository
+        {
+            get
+            {
+                return new ProvinciaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public TipoAtencionRepository TipoAtencionRepository
+        {
+            get
+            {
+                return new TipoAtencionRepository(_dbContext, _configuration, _result);
+            }
+        }
+
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;

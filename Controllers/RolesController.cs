@@ -45,7 +45,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, result.Errors);
             }
 
-            return Ok(role.Id);
+            return Ok(new { role.Id });
         }
     }
 }

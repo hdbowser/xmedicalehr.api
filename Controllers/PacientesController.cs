@@ -53,7 +53,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, new { result.Errors });
             }
         
-            return new JsonResult(model.Id);
+            return new JsonResult(new { model.Id });
         }
 
         [HttpPut("{id}")]
@@ -92,7 +92,7 @@ namespace xmedicalehr.api.Controllers
             {
                 return StatusCode(500, new { result.Errors });
             }
-            return new JsonResult("Done");
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
@@ -105,13 +105,13 @@ namespace xmedicalehr.api.Controllers
             }
 
             // paciente.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            _unitOfWork.PacienteRepository.Delete(paciente);
+            _unitOfWork.PacienteRepository.Delete(paciente, disable);
             var result = await _unitOfWork.SaveAsync();
             if (result.Succeed)
             {
                 return StatusCode(500, new { result.Errors });
             }
-            return new JsonResult("Done");
+            return NoContent();
         }
         
         

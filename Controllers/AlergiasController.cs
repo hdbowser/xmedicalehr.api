@@ -81,7 +81,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, new { result.Errors });
             }
         
-            return new JsonResult("Done");
+            return NoContent();
         }
         [HttpDelete("{pacienteId}/{sustanciaId}")]
         public async Task<ActionResult> DeleteAsync(string pacienteId, string sustanciaId, bool disable = true)
@@ -95,14 +95,14 @@ namespace xmedicalehr.api.Controllers
             }
 
             var alergia = (AlergiaPaciente) await _unitOfWork.AlergiaRepository.FindByIdAsync(pacienteId, sustanciaId);
-            _unitOfWork.AlergiaRepository.Delete(alergia);
+            _unitOfWork.AlergiaRepository.Delete(alergia, disable);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {
                 return StatusCode(500, new { result.Errors });
             }
         
-            return new JsonResult("Done");
+            return NoContent();
         }
         
     }

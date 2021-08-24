@@ -87,7 +87,7 @@ namespace xmedicalehr.api.Controllers
                 return StatusCode(500, new { result.Errors });
             }
 
-            return new JsonResult("Done");
+            return NoContent();
         }
 
         [HttpDelete("{pacienteId}/{tipoAntecedenteId}")]
@@ -110,14 +110,14 @@ namespace xmedicalehr.api.Controllers
 
             antecedente.DeletedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            _unitOfWork.AntecedentePacienteRepository.Delete(antecedente);
+            _unitOfWork.AntecedentePacienteRepository.Delete(antecedente, disable);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {
                 return StatusCode(500, new { result.Errors });
             }
 
-            return new JsonResult("Done");
+            return NoContent();
         }
     }
 }
