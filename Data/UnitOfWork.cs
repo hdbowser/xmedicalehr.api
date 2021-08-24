@@ -86,6 +86,14 @@ namespace xmedicalehr.api.Data
             }
         }
 
+        public AntecedentePacienteRepository AntecedentePacienteRepository
+        {
+            get
+            {
+                return new AntecedentePacienteRepository(_dbContext, _configuration, _result);
+            }
+        }
+
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;

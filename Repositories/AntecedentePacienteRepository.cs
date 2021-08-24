@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Core.FilterClass;
 
 namespace xmedicalehr.api.Repositories
 {
@@ -58,12 +59,18 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(AntecedenteFilter filter)
         {
-            var objList = new List<object>();
             try
             {
-                objList = await _db.AntecedetesPacientes.Cast<object>().ToListAsync();
+                var objList = await _db.AntecedetesPacientes.ToListAsync();
+
+                if (string.IsNullOrEmpty(filter.PacienteId))
+                {
+                    objList.Where(x => x.PacienteId.Equals(filter.PacienteId));
+                }
+
+                return objList.Cast<object>().ToList();
             }
             catch (System.Exception ex)
             {
@@ -77,7 +84,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string pacienteId, string tipoAntecedenteId)

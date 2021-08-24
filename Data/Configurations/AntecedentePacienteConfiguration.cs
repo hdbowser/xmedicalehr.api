@@ -14,7 +14,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
             
             builder.Property(x => x.TipoAntecedenteId)
-                .HasColumnName("varchar(255)");
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.Detalle)
                 .HasColumnType("varchar(255)");
