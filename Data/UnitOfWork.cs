@@ -118,6 +118,150 @@ namespace xmedicalehr.api.Data
             }
         }
 
+        public DepartamentoRepository DepartamentoRepository
+        {
+            get
+            {
+                return new DepartamentoRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public EmpresaRepository EmpresaRepository
+        {
+            get
+            {
+                return new EmpresaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public EnfermedadRepository EnfermedadRepository
+        {
+            get
+            {
+                return new EnfermedadRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public EstudioRepository EstudioRepository
+        {
+            get
+            {
+                return new EstudioRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public ExploracionItemRepository ExploracionItemRepository
+        {
+            get
+            {
+                return new ExploracionItemRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public ExploracionItemTemplaterepository ExploracionItemTemplaterepository
+        {
+            get
+            {
+                return new ExploracionItemTemplaterepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public GrupoAntecedenteRepository GrupoAntecedenteRepository
+        {
+            get
+            {
+                return new GrupoAntecedenteRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public MedicacionRepository MedicacionRepository
+        {
+            get
+            {
+                return new MedicacionRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public MedicamentoRepository MedicamentoRepository
+        {
+            get
+            {
+                return new MedicamentoRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public NotaMedicaCustomFieldRepository NotaMedicaCustomFieldRepository
+        {
+            get
+            {
+                return new NotaMedicaCustomFieldRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public OrdenMedicaRepository OrdenMedicaRepository
+        {
+            get
+            {
+                return new OrdenMedicaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public PacienteParentescoRepository PacienteParentescoRepository
+        {
+            get
+            {
+                return new PacienteParentescoRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public SignosVitalesRepository SignosVitalesRepository
+        {
+            get
+            {
+                return new SignosVitalesRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public SolicitudesInterconsultasRepository SolicitudesInterconsultasRepository
+        {
+            get
+            {
+                return new SolicitudesInterconsultasRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public SustanciaRepository SustanciaRepository
+        {
+            get
+            {
+                return new SustanciaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public TipoAntecedenteRepository TipoAntecedenteRepository
+        {
+            get
+            {
+                return new TipoAntecedenteRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public TipoNotaMedicaRepository TipoNotaMedicaRepository
+        {
+            get
+            {
+                return new TipoNotaMedicaRepository(_dbContext, _configuration, _result);
+            }
+        }
+
+        public TipoParentescoRepository TipoParentescoRepository
+        {
+            get
+            {
+                return new TipoParentescoRepository(_dbContext, _configuration, _result);
+            }
+        }
+
         public UnitOfWork(AppDbContext dbContext, IConfiguration configuration)
         {
             _dbContext = dbContext;
