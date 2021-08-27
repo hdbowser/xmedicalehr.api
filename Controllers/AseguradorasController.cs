@@ -55,19 +55,50 @@ namespace xmedicalehr.api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(string id, [FromBody] Aseguradora model)
         {
-            // TODO: Your code here
-            await Task.Yield();
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest();
+            }
 
+            var ars = (Aseguradora) await _unitOfWork.AseguradoraRepository.FindByIdAsync(id);
+            if (ars == null)
+            {
+                return NotFound();
+            }
+
+            ars.Nombre = model.Nombre;
+            ars.CodigoInt = model.CodigoInt;
+
+            _unitOfWork.AseguradoraRepository.Update(ars);
+            var result = await _unitOfWork.SaveAsync();
+            if (!result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(string id, bool disable = true)
         {
-            // TODO: Your code here
-            await Task.Yield();
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest();
+            }
 
-            return null;
+            var ars = (Aseguradora) await _unitOfWork.AseguradoraRepository.FindByIdAsync(id);
+            if (ars == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.AseguradoraRepository.Delete(ars, disable);
+            var result = await _unitOfWork.SaveAsync();
+            if (!result.Succeed)
+            {
+                return StatusCode(500, new { result.Errors });
+            }
+            return NoContent();
         }
     }
 }
