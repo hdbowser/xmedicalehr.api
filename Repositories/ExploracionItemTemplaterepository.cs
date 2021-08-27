@@ -10,9 +10,9 @@ using xmedicalehr.api.Models;
 
 namespace xmedicalehr.api.Repositories
 {
-    public class ExploracionItemTemplaterepository : Repository
+    public class ExploracionItemTemplateRepository : Repository
     {
-        public ExploracionItemTemplaterepository(AppDbContext dbContext, IConfiguration configuration, RepositoryResult result) : base(dbContext, configuration, result)
+        public ExploracionItemTemplateRepository(AppDbContext dbContext, IConfiguration configuration, RepositoryResult result) : base(dbContext, configuration, result)
         {
         }
 
@@ -79,7 +79,7 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(int id)
+        public async Task<object> FindByIdAsync(string id)
         {
             object obj = null;
             try

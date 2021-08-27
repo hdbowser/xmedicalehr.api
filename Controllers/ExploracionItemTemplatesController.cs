@@ -11,11 +11,11 @@ namespace xmedicalehr.api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EnfermedadesController : ControllerBase
+    public class ExploracionItemTemplatesController : ControllerBase
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public EnfermedadesController(AppDbContext dbContext, IConfiguration configuration)
+        public ExploracionItemTemplatesController(AppDbContext dbContext, IConfiguration configuration)
         {
             _unitOfWork = new UnitOfWork(dbContext, configuration);
         }
@@ -23,7 +23,7 @@ namespace xmedicalehr.api.Controllers
         [HttpGet("")]
         public async Task<ActionResult> GetAsync()
         {
-            var result = await _unitOfWork.EnfermedadRepository.FilterAsync();
+            var result = await _unitOfWork.ExploracionItemTemplateRepository.FilterAsync();
             return new JsonResult(result);
         }
 
@@ -35,14 +35,14 @@ namespace xmedicalehr.api.Controllers
                 return BadRequest();
             }
 
-            var result = await _unitOfWork.EnfermedadRepository.FindByIdAsync(id);
+            var result = await _unitOfWork.ExploracionItemTemplateRepository.FindByIdAsync(id);
             return new JsonResult(result);
         }
 
         [HttpPost("")]
-        public async Task<ActionResult> PostAsync([FromBody] Enfermedad model)
+        public async Task<ActionResult> PostAsync([FromBody] ExploracionItemTemplate model)
         {
-            await _unitOfWork.EnfermedadRepository.AddAsync(model);
+            await _unitOfWork.ExploracionItemTemplateRepository.AddAsync(model);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {
@@ -53,25 +53,22 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(string id, [FromBody] Enfermedad model)
+        public async Task<IActionResult> PutAsync(string id, [FromBody] ExploracionItemTemplate model)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
             {
                 return BadRequest();
             }
 
-            var enfermedad = (Enfermedad) await _unitOfWork.EnfermedadRepository.FindByIdAsync(id);
-            if (enfermedad == null)
+            var template = (ExploracionItemTemplate) await _unitOfWork.ExploracionItemTemplateRepository.FindByIdAsync(id);
+            if (template == null)
             {
                 return NotFound();
             }
 
-            enfermedad.Catalogo = model.Catalogo;
-            enfermedad.Codigo = model.Codigo;
-            enfermedad.Descripcion = model.Descripcion;
-            enfermedad.Keywords = model.Keywords;
+            template.Nombre = model.Nombre;
             
-            _unitOfWork.EnfermedadRepository.Update(enfermedad);
+            _unitOfWork.ExploracionItemTemplateRepository.Update(template);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {
@@ -88,13 +85,13 @@ namespace xmedicalehr.api.Controllers
                 return BadRequest();
             }
 
-            var enfermedad = (Enfermedad) await _unitOfWork.EnfermedadRepository.FindByIdAsync(id);
-            if (enfermedad == null)
+            var template = (ExploracionItemTemplate) await _unitOfWork.ExploracionItemTemplateRepository.FindByIdAsync(id);
+            if (template == null)
             {
                 return NotFound();
             }
             
-            _unitOfWork.EnfermedadRepository.Delete(enfermedad, disable);
+            _unitOfWork.ExploracionItemTemplateRepository.Delete(template, disable);
             var result = await _unitOfWork.SaveAsync();
             if (!result.Succeed)
             {

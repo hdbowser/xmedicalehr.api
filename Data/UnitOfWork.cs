@@ -158,11 +158,11 @@ namespace xmedicalehr.api.Data
             }
         }
 
-        public ExploracionItemTemplaterepository ExploracionItemTemplaterepository
+        public ExploracionItemTemplateRepository ExploracionItemTemplateRepository
         {
             get
             {
-                return new ExploracionItemTemplaterepository(_dbContext, _configuration, _result);
+                return new ExploracionItemTemplateRepository(_dbContext, _configuration, _result);
             }
         }
 
