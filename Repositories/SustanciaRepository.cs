@@ -79,7 +79,7 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(int id)
+        public async Task<object> FindByIdAsync(string id)
         {
             object obj = null;
             try

@@ -77,12 +77,12 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(string pacienteId, int tipoParentescoId)
+        public async Task<object> FindByIdAsync(string pacienteId, string parentescoId, string tipoParentescoId)
         {
             object obj = null;
             try
             {
-                obj = await _db.PacientesParentescos.FindAsync(pacienteId, tipoParentescoId);
+                obj = await _db.PacientesParentescos.FindAsync(pacienteId, parentescoId, tipoParentescoId);
             }
             catch (System.Exception ex)
             {
