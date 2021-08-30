@@ -73,7 +73,7 @@ namespace xmedicalehr.api.Repositories
                         x.Id,
                         x.AtencionId,
                         x.MedicoId,
-                        x.Medico.Name,
+                        NombreMedico = x.Medico.Name,
                         x.MotivoConsulta,
                         x.MotivoEgreso,
                         x.HistoriaEnfermedad,
