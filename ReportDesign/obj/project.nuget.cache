@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "WFew53yDRuRm4aCfOBs8GDS7z3nF1I7tldzM5Le8Xd+Gc92F/qPUaLG8PXo/NCSrIhhsYC+5NiSKdP/7qnLJ7g==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\joelmena\\Desktop\\Projects\\xmedicalehr.api\\ReportDesign\\ReportDesign.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\joelmena\\.nuget\\packages\\microsoft.reportviewer.winforms\\10.0.40219.1\\microsoft.reportviewer.winforms.10.0.40219.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.ReportViewer.WinForms 10.0.40219.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.ReportViewer.WinForms",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
+}
