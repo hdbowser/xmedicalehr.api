@@ -16,6 +16,8 @@ namespace xmedical_ehr.Controllers
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
         }
+        
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

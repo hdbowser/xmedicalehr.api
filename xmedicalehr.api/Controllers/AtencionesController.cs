@@ -30,7 +30,7 @@ namespace xmedicalehr.api.Controllers
         }
 
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetAsync(string id)
         {
             if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))

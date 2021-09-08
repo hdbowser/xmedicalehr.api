@@ -64,7 +64,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
-                var objList = await _db.NotasMedica
+                var objList = _db.NotasMedica
                     .Include(x => x.AtencionMedica)
                     .Include(x => x.TipoNota)
                     .Include(x => x.Medico)
@@ -94,31 +94,34 @@ namespace xmedicalehr.api.Repositories
                         x.CreatedAt,
                         x.UpdatedAt,
                         x.DeletedAt
-                    })
-                    .ToListAsync();
+                    });
                 
-                if (string.IsNullOrEmpty(filter.AtencionId) || string.IsNullOrWhiteSpace(filter.AtencionId))
+                if (!string.IsNullOrEmpty(filter.AtencionId))
                 {
-                    objList.Where(x => x.AtencionId.Equals(filter.AtencionId));
-                }
-                if (string.IsNullOrEmpty(filter.MedicoId) || string.IsNullOrWhiteSpace(filter.MedicoId))
-                {
-                    objList.Where(x => x.MedicoId.Equals(filter.MedicoId));
-                }
-                if (filter.CreatedAt != null)
-                {
-                    objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
-                }
-                if (filter.UpdatedAt != null)
-                {
-                    objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
-                }
-                if (filter.DeletedAt != null)
-                {
-                    objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                    objList = objList.Where(x => x.AtencionId.Equals(filter.AtencionId));
                 }
 
-                return objList.Cast<object>().ToList();
+                if (!string.IsNullOrEmpty(filter.MedicoId) || !string.IsNullOrWhiteSpace(filter.MedicoId))
+                {
+                    objList = objList.Where(x => x.MedicoId.Equals(filter.MedicoId));
+                }
+
+                if (filter.CreatedAt != null)
+                {
+                    objList = objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
+                }
+
+                if (filter.UpdatedAt != null)
+                {
+                    objList = objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
+                }
+                
+                if (filter.DeletedAt != null)
+                {
+                    objList = objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                }
+
+                return await objList.OrderByDescending(x => x.Fecha).Cast<object>().ToListAsync();
             }
             catch (System.Exception ex)
             {
