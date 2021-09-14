@@ -64,7 +64,7 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
-                var objList = await _db.AtencionesMedicas
+                var objList = _db.AtencionesMedicas
                     .Include(x => x.Paciente)
                     .Include(x => x.Medico)
                     .Include(x => x.Creator)
@@ -89,28 +89,27 @@ namespace xmedicalehr.api.Repositories
                         CreatedBy = x.Creator.Name,
                         x.UpdatedAt,
                         x.DeletedAt
-                    })
-                    .ToListAsync();
+                    });
                 
 
-                if (string.IsNullOrEmpty(filter.PacienteId) || string.IsNullOrWhiteSpace(filter.PacienteId))
+                if (!string.IsNullOrEmpty(filter.PacienteId))
                 {
-                    objList.Where(x => x.PacienteId.Equals(filter.PacienteId));
+                    objList = objList.Where(x => x.PacienteId.Equals(filter.PacienteId));
                 }
                 if (filter.CreatedAt != null)
                 {
-                    objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
+                    objList = objList.Where(x => x.CreatedAt.Date.Equals(filter.CreatedAt.GetValueOrDefault().Date));
                 }
                 if (filter.UpdatedAt != null)
                 {
-                    objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
+                    objList = objList.Where(x => x.UpdatedAt.Date.Equals(filter.UpdatedAt.GetValueOrDefault().Date));
                 }
                 if (filter.DeletedAt != null)
                 {
-                    objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
+                    objList = objList.Where(x => x.DeletedAt.Date.Equals(filter.DeletedAt.GetValueOrDefault().Date));
                 }
 
-                return objList.Cast<object>().ToList();
+                return await objList.OrderByDescending(x => x.FechaIngreso).Cast<object>().ToListAsync();
             }
             catch (System.Exception ex)
             {
