@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using xmedicalehr.api.Core;
+using xmedicalehr.api.Core.FilterClass;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 
@@ -60,12 +61,28 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(SignosVitalesFilter filter)
         {
-            var objList = new List<object>();
             try
             {
-                objList = await _db.SignosVitales.Cast<object>().ToListAsync();
+                var objList = _db.SignosVitales
+                    .Where(x => 
+                        x.AtencionId.Equals(filter.AtencionId));
+
+                if (!string.IsNullOrEmpty(filter.NotaMedicaId))
+                {
+                    objList = objList.Where(x => x.NotaMedicaId.Equals(filter.NotaMedicaId));
+                }
+                if (!string.IsNullOrEmpty(filter.NotaEnfermeriaId))
+                {
+                    objList = objList.Where(x => x.NotaEnfermeriaId.Equals(filter.NotaEnfermeriaId));
+                }
+                if (filter.NumItem > 0)
+                {
+                    objList = objList.Where(x => x.NumItem.Equals(filter.NumItem));
+                }
+
+                return await objList.Cast<object>().ToListAsync();
             }
             catch (System.Exception ex)
             {
@@ -79,7 +96,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string atencionId, int NumItem)
