@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace xmedical_ehr.Migrations
 {
-    public partial class Hard_Sex_xxx : Migration
+    public partial class addedUniqueFieldsInSignosVitales : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,7 +42,7 @@ namespace xmedical_ehr.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: false),
                     Name = table.Column<string>(type: "varchar(150)", nullable: true),
-                    varchar45 = table.Column<string>(name: "varchar(45)", type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Prefix = table.Column<string>(type: "varchar(45)", nullable: true),
                     UserName = table.Column<string>(type: "varchar(256) CHARACTER SET utf8mb4", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "varchar(256) CHARACTER SET utf8mb4", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "varchar(256) CHARACTER SET utf8mb4", maxLength: 256, nullable: true),
@@ -395,15 +395,15 @@ namespace xmedical_ehr.Migrations
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     Nombres = table.Column<string>(type: "varchar(100)", nullable: true),
-                    PrimerApellido = table.Column<string>(type: "varchar(100)", nullable: true),
-                    SegundoApellido = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Sexo = table.Column<string>(type: "char(1)", nullable: false),
+                    PrimerApellido = table.Column<string>(type: "varchar(100)", nullable: false),
+                    SegundoApellido = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Sexo = table.Column<string>(type: "char(1)", nullable: true),
                     FechaNacimiento = table.Column<DateTime>(type: "datetime", nullable: false),
                     EstadoCivil = table.Column<string>(type: "char(1)", nullable: true),
                     Telefono = table.Column<string>(type: "varchar(20)", nullable: true),
                     Celular = table.Column<string>(type: "varchar(20)", nullable: true),
                     Email = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Cedula = table.Column<string>(type: "varchar(20)", nullable: true),
+                    Cedula = table.Column<string>(type: "varchar(20)", nullable: false),
                     Direccion = table.Column<string>(type: "varchar(250)", nullable: true),
                     Estatura = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     UnidadEstatura = table.Column<string>(type: "varchar(10)", nullable: true),
@@ -471,11 +471,11 @@ namespace xmedical_ehr.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AntecedetesPacientes",
+                name: "AntecedentesPacientes",
                 columns: table => new
                 {
                     PacienteId = table.Column<string>(type: "varchar(255)", nullable: false),
-                    varchar255 = table.Column<string>(name: "varchar(255)", type: "varchar(255)", nullable: false),
+                    TipoAntecedenteId = table.Column<string>(type: "varchar(255)", nullable: false),
                     Detalle = table.Column<string>(type: "varchar(255)", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
                     CreatedBy = table.Column<string>(type: "varchar(255)", nullable: true),
@@ -487,7 +487,7 @@ namespace xmedical_ehr.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PRIMARY", x => new { x.PacienteId, x.varchar255 });
+                    table.PrimaryKey("PRIMARY", x => new { x.PacienteId, x.TipoAntecedenteId });
                     table.ForeignKey(
                         name: "FK_AntecedentePaciente_Paciente",
                         column: x => x.PacienteId,
@@ -496,7 +496,7 @@ namespace xmedical_ehr.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AntecedentePaciente_TipoAntecedente",
-                        column: x => x.varchar255,
+                        column: x => x.TipoAntecedenteId,
                         principalTable: "TiposAntecedentes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -964,32 +964,36 @@ namespace xmedical_ehr.Migrations
                 columns: new[] { "Id", "CodigoInt", "Nombre" },
                 values: new object[,]
                 {
-                    { "5e46571c-3e37-471a-89c0-67cb537b3435", null, "SENASA" },
-                    { "4eae19b4-72a6-4007-826a-8658780a4449", null, "ARS HUMANO" },
-                    { "e69f77d5-7712-4bd1-abe4-cf9d6434085e", null, "UNIVERSAL" }
+                    { "1c06702c-530c-45df-b2d0-002b6bea4637", null, "SENASA" },
+                    { "ccd6f37e-1107-4e8a-9cdc-51d9998f0bf0", null, "ARS HUMANO" },
+                    { "c83dab48-2bcc-497b-86fb-d304bc17db04", null, "UNIVERSAL" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "DisplayName", "Name", "NormalizedName" },
-                values: new object[] { "1872ffce-b45f-488a-aa1e-371ff7004f8c", "e45c8741-fac3-4121-b2f1-ab469ad0b04b", "Administrador", "admin", null });
+                values: new object[,]
+                {
+                    { "0c2dc9fb-f24f-49b7-91c6-20272304e7f5", "60e40e87-38d5-436e-b7db-e214f819ca14", "Administrador", "admin", "ADMINISTRADOR" },
+                    { "bb3e7273-1d4b-4667-95f0-41e681a8c245", "b3c129f6-ece3-4cfb-bc96-d46ada8c2af2", "User", "user", "USER" }
+                });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "varchar(45)", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "86065938-65e8-4258-8a59-9c9f78a15321", 0, "d9b82e89-edd5-48a0-a728-7e92c90fb921", "root@system.local", false, false, null, "Root", "ROOT@SYSTEM.LOCAL", "ROOT@SYSTEM.LOCAL", "AQAAAAEAACcQAAAAEBEI92DDQ3rQr8oCpJKHlvz1hN/VDJpzGkFdV3qEHSjAQdLm5q6JEvzmS6sJpQnHMw==", null, false, "Sr", "6XKETTFVMB3X6M4ENBW6YYVZYCTO52XW", false, "root@system.local" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Prefix", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "cd433001-3f7d-4793-bd75-71c9e4da7f6b", 0, "d9b82e89-edd5-48a0-a728-7e92c90fb921", "root@system.local", false, false, null, "Root", "ROOT@SYSTEM.LOCAL", "ROOT@SYSTEM.LOCAL", "AQAAAAEAACcQAAAAEBEI92DDQ3rQr8oCpJKHlvz1hN/VDJpzGkFdV3qEHSjAQdLm5q6JEvzmS6sJpQnHMw==", null, false, "Sr", "6XKETTFVMB3X6M4ENBW6YYVZYCTO52XW", false, "root@system.local" });
 
             migrationBuilder.InsertData(
                 table: "Estudios",
                 columns: new[] { "Id", "Descripcion", "Tipo" },
                 values: new object[,]
                 {
-                    { "6516f4fc-5562-42df-b2d8-3a5ffe58b937", "HEMOGRAMA", "LAB" },
-                    { "0217ca5b-9adc-45a7-a215-2bc058b40f58", "ORINA", "LAB" },
-                    { "8cf6b0c3-8a05-4cc0-a49f-6913fb918566", "COPROLOGICO", "LAB" },
-                    { "93ad4bb1-0983-4175-b44f-6a54413a12fb", "SONOGRAFIA", "IMG" },
-                    { "649fc467-7536-43f2-81df-b37df1503508", "TOMOGRAFIA", "IMG" },
-                    { "5401ac1b-f904-4a58-8284-a27b3bd5c061", "RADIOGRAFIA", "IMG" }
+                    { "d9ea403e-e550-4306-80bf-4fb107d1176b", "HEMOGRAMA", "LAB" },
+                    { "0fadc010-7525-428d-a1b4-4ca76d097f4d", "ORINA", "LAB" },
+                    { "4ebc94ca-98ae-49d7-a616-e5675f82906d", "COPROLOGICO", "LAB" },
+                    { "edbe48ec-5253-4389-836e-cf13cf7de49c", "SONOGRAFIA", "IMG" },
+                    { "cadb7537-3f77-46fe-9599-555f6137a6e4", "TOMOGRAFIA", "IMG" },
+                    { "4d2cc093-6cf7-48b3-93dc-844f213fe90e", "RADIOGRAFIA", "IMG" }
                 });
 
             migrationBuilder.InsertData(
@@ -997,9 +1001,9 @@ namespace xmedical_ehr.Migrations
                 columns: new[] { "Id", "Descripcion" },
                 values: new object[,]
                 {
-                    { "1bbe4827-824c-490d-afa0-35287613cda0", "PATOLOGICOS" },
-                    { "f34c0149-c03d-40aa-83d4-2bb8902dca66", "NO PATOLOGICOS" },
-                    { "3685fc44-8a11-429b-a40a-e98aa0531c8b", "PSIQUIATRICOS" }
+                    { "6c412c62-74e2-4077-bd99-190176f26003", "PATOLOGICOS" },
+                    { "5846b6c0-1ee8-4255-a93e-bcd61bb588f2", "NO PATOLOGICOS" },
+                    { "46d31292-2fb9-4986-9c1f-b94aa075870b", "PSIQUIATRICOS" }
                 });
 
             migrationBuilder.InsertData(
@@ -1007,9 +1011,9 @@ namespace xmedical_ehr.Migrations
                 columns: new[] { "Id", "Descripcion" },
                 values: new object[,]
                 {
-                    { "5f22a5f5-0e66-4043-abae-6fea7ccbd1e6", "Habitacion 303" },
-                    { "c700f3d8-18cf-42f4-b595-51b17a460f53", "Habitacion 302" },
-                    { "eec11d9b-baf0-469e-a1c9-35286668ad42", "Habitacion 301" }
+                    { "cc65eb17-96f8-43ac-b22b-bb4645d8f536", "Habitacion 303" },
+                    { "f472afae-c219-45b5-abc7-04420f03a609", "Habitacion 302" },
+                    { "82715739-71b7-4b87-8dd6-196240c3e454", "Habitacion 301" }
                 });
 
             migrationBuilder.InsertData(
@@ -1017,20 +1021,20 @@ namespace xmedical_ehr.Migrations
                 columns: new[] { "Id", "CreatedAt", "Deleted", "Descripcion" },
                 values: new object[,]
                 {
-                    { "c115e3cd-590e-4738-926e-bc670afdee5a", new DateTime(2021, 8, 11, 14, 59, 3, 470, DateTimeKind.Local).AddTicks(6978), false, "ACETAMINOFEN" },
-                    { "40a1025a-9e26-4b1e-b2fe-70c016e4d363", new DateTime(2021, 8, 11, 14, 59, 3, 474, DateTimeKind.Local).AddTicks(5091), false, "PARACETAMOL" },
-                    { "b30674fa-9c8b-4c5f-936d-333d295ed8a0", new DateTime(2021, 8, 11, 14, 59, 3, 474, DateTimeKind.Local).AddTicks(5175), false, "SOLUCION SALINA MIXTA 1000ml" }
+                    { "b8c88814-bbb4-41a8-a61f-620df9890a35", new DateTime(2021, 9, 14, 16, 27, 12, 151, DateTimeKind.Local).AddTicks(3478), false, "ACETAMINOFEN" },
+                    { "e6a71a8e-f718-4718-8c0c-814edc54c731", new DateTime(2021, 9, 14, 16, 27, 12, 151, DateTimeKind.Local).AddTicks(9202), false, "PARACETAMOL" },
+                    { "78578d72-9d9a-4453-8df4-a26f6a38b82a", new DateTime(2021, 9, 14, 16, 27, 12, 151, DateTimeKind.Local).AddTicks(9226), false, "SOLUCION SALINA MIXTA 1000ml" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Nacionalidades",
                 columns: new[] { "Id", "CodigoInt", "Descripcion" },
-                values: new object[] { "5aa1f454-6ad3-42b2-a4b4-2c820e36ace0", null, "Dominicana" });
+                values: new object[] { "0f993170-77f5-4eac-ba9f-f27823ed091e", null, "Dominicana" });
 
             migrationBuilder.InsertData(
                 table: "Provincias",
                 columns: new[] { "Id", "CodigoInt", "Nombre" },
-                values: new object[] { "be9e2f9a-05a3-41aa-938c-abebcc79d456", null, "Duarte" });
+                values: new object[] { "e2d8e515-c6ec-4258-98f7-dad48d10c695", null, "Duarte" });
 
             migrationBuilder.InsertData(
                 table: "TiposAtenciones",
@@ -1057,10 +1061,10 @@ namespace xmedical_ehr.Migrations
                 columns: new[] { "Id", "Descripcion" },
                 values: new object[,]
                 {
-                    { "0b95d78c-d284-4f57-b6dc-1ea040beea9d", "Esposo/a" },
-                    { "3709fc66-8389-4749-94ab-0d8c14843c74", "Padre" },
-                    { "499d39af-d18d-4677-936f-fe3fd29a2731", "Madre" },
-                    { "31c61022-8996-4e76-a584-b203763b8e35", "Hijo/a" }
+                    { "1b0f6b1a-42a2-4c77-9d2b-9b362d2a340f", "Esposo/a" },
+                    { "e943abd0-0124-4fc6-8242-194809bbfee5", "Padre" },
+                    { "ad850dc0-f528-41ca-8225-b213451f2380", "Madre" },
+                    { "0ba85b32-885e-4168-83e8-bb4b9eff1ee4", "Hijo/a" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1069,9 +1073,14 @@ namespace xmedical_ehr.Migrations
                 column: "SustanciaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AntecedetesPacientes_varchar(255)",
-                table: "AntecedetesPacientes",
-                column: "varchar(255)");
+                name: "IX_AntecedentesPacientes_PacienteId_TipoAntecedenteId",
+                table: "AntecedentesPacientes",
+                columns: new[] { "PacienteId", "TipoAntecedenteId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AntecedentesPacientes_TipoAntecedenteId",
+                table: "AntecedentesPacientes",
+                column: "TipoAntecedenteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -1232,6 +1241,12 @@ namespace xmedical_ehr.Migrations
                 column: "TipoParentescoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SignosVitales_AtencionId_NotaMedicaId_NumItem",
+                table: "SignosVitales",
+                columns: new[] { "AtencionId", "NotaMedicaId", "NumItem" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SignosVitales_NotaEnfermeriaId",
                 table: "SignosVitales",
                 column: "NotaEnfermeriaId");
@@ -1268,7 +1283,7 @@ namespace xmedical_ehr.Migrations
                 name: "AlergiasPacientes");
 
             migrationBuilder.DropTable(
-                name: "AntecedetesPacientes");
+                name: "AntecedentesPacientes");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");

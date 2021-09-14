@@ -23,6 +23,8 @@ namespace xmedicalehr.api.Data.Configurations
             builder.Property(x => x.Deleted)
                 .HasColumnType("tinyint(1)");
             
+
+            
             builder.HasData(new Medicamento[]{
                 new Medicamento{
                     Id = Guid.NewGuid().ToString(),

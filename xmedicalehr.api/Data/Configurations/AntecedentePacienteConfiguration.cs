@@ -9,6 +9,8 @@ namespace xmedicalehr.api.Data.Configurations
         {
             builder.HasKey(x => new { x.PacienteId, x.TipoAntecedenteId })
                 .HasName("PRIMARY");
+            
+            builder.HasIndex(x => new { x.PacienteId, x.TipoAntecedenteId });
 
             builder.Property(x => x.PacienteId)
                 .HasColumnType("varchar(255)");

@@ -9,6 +9,9 @@ namespace xmedicalehr.api.Data.Configurations
         {
             builder.HasKey(x => new { x.AtencionId, x.NumItem })
                 .HasName("PRIMARY");
+            
+            builder.HasIndex(x => new { x.AtencionId, x.NotaMedicaId, x.NumItem })
+                .IsUnique();
 
             builder.Property(x => x.AtencionId)
                 .HasColumnType("varchar(255)");

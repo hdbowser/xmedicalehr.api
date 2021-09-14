@@ -14,6 +14,7 @@ namespace xmedicalehr.api.Data.Migrations.Configurations
             builder.Property(x => x.Prefix)
                 .HasColumnType("varchar(45)");
 
+
             builder.HasData(
                 new User
                 {
