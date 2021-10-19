@@ -29,15 +29,15 @@ namespace xmedicalehr.api.Controllers
             return new JsonResult(result);
         }
 
-        [HttpGet("{atencionId}/{numItem}")]
-        public async Task<ActionResult> GetAsync(string atencionId, int numItem)
+        [HttpGet("{atencionId}/{notaMedicaId}/{numItem}")]
+        public async Task<ActionResult> GetAsync(string atencionId, string notaMedicaId, int numItem)
         {
-            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrWhiteSpace(atencionId) || numItem == 0)
+            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
             {
                 return BadRequest();
             }
 
-            var result = await _unitOfWork.SignosVitalesRepository.FindByIdAsync(atencionId, numItem);
+            var result = await _unitOfWork.SignosVitalesRepository.FindByIdAsync(atencionId, notaMedicaId, numItem);
             return new JsonResult(result);
         }
 
@@ -55,15 +55,15 @@ namespace xmedicalehr.api.Controllers
             return Ok();
         }
 
-        [HttpPut("{atencionId}/{numItem}")]
-        public async Task<IActionResult> PutAsync(string atencionId, int numItem, [FromBody] SignosVitales model)
+        [HttpPut("{atencionId}/{notaMedica}/{numItem}")]
+        public async Task<IActionResult> PutAsync(string atencionId, string notaMedicaId, int numItem, [FromBody] SignosVitales model)
         {
-            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrWhiteSpace(atencionId) || numItem == 0)
+            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
             {
                 return BadRequest();
             }
 
-            var signoVital = (SignosVitales) await _unitOfWork.SignosVitalesRepository.FindByIdAsync(atencionId, numItem);
+            var signoVital = (SignosVitales) await _unitOfWork.SignosVitalesRepository.FindByIdAsync(atencionId, notaMedicaId, numItem);
             if (signoVital == null )
             {
                 return NotFound();
@@ -88,15 +88,15 @@ namespace xmedicalehr.api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{atencionId}/{numItem}")]
-        public async Task<ActionResult> DeleteAsync(string atencionId, int numItem, bool disable = true)
+        [HttpDelete("{atencionId}{notaMedicaId}/{numItem}")]
+        public async Task<ActionResult> DeleteAsync(string atencionId, string notaMedicaId, int numItem, bool disable = true)
         {
-            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrWhiteSpace(atencionId) || numItem == 0)
+            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
             {
                 return BadRequest();
             }
 
-            var signoVital = (SignosVitales) await _unitOfWork.SignosVitalesRepository.FindByIdAsync(atencionId, numItem);
+            var signoVital = (SignosVitales) await _unitOfWork.SignosVitalesRepository.FindByIdAsync(atencionId, notaMedicaId, numItem);
             if (signoVital == null )
             {
                 return NotFound();
