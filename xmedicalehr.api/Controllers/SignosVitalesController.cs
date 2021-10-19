@@ -55,7 +55,7 @@ namespace xmedicalehr.api.Controllers
             return Ok();
         }
 
-        [HttpPut("{atencionId}/{notaMedica}/{numItem}")]
+        [HttpPut("{atencionId}/{notaMedicaId}/{numItem}")]
         public async Task<IActionResult> PutAsync(string atencionId, string notaMedicaId, int numItem, [FromBody] SignosVitales model)
         {
             if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
@@ -88,7 +88,7 @@ namespace xmedicalehr.api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{atencionId}{notaMedicaId}/{numItem}")]
+        [HttpDelete("{atencionId}/{notaMedicaId}/{numItem}")]
         public async Task<ActionResult> DeleteAsync(string atencionId, string notaMedicaId, int numItem, bool disable = true)
         {
             if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)

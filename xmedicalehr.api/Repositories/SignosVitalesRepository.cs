@@ -110,7 +110,8 @@ namespace xmedicalehr.api.Repositories
             try
             {
                 obj = await _db.SignosVitales
-                    .Where(x => x.AtencionId.Equals(atencionId) && x.NotaMedica.Equals(notaMedica) && x.NumItem.Equals(NumItem))
+                    .Where(x => x.AtencionId.Equals(atencionId) && x.NotaMedicaId.Equals(notaMedica) && x.NumItem.Equals(NumItem))
+                    .Cast<object>()
                     .FirstOrDefaultAsync();
             }
             catch (System.Exception ex)
