@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QDW3MXEMEK+nZnNlTVu0rGYYOHzGYY5MrdAXBvSnIfz3fHdFDrI4Nj4Qh5M6Zyy6TwY/D+mtacOoRytfuPTHtA==",
+  "dgSpecHash": "9rjbec/ywS2IABHJJWlFU60rQ1hKuMb/IXXR2aYClrtJW8iEPPp+w8arghv2GiwZUz9Q6ja/yJPX4+Cj3F5G3w==",
   "success": true,
-  "projectFilePath": "c:\\Users\\joelm\\Desktop\\Projects\\xmedicalehr.api\\ReportDesign\\ReportDesign.csproj",
+  "projectFilePath": "C:\\Users\\joelm\\Desktop\\Projects\\xmedicalehr.api\\ReportDesign\\ReportDesign.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\joelm\\.nuget\\packages\\microsoft.reportviewer.winforms\\10.0.40219.1\\microsoft.reportviewer.winforms.10.0.40219.1.nupkg.sha512"
   ],
