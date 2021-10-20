@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using xmedicalehr.api.Core.FilterClass;
 using xmedicalehr.api.Data;
 using xmedicalehr.api.Models;
 
@@ -21,9 +22,9 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> GetAsync()
+        public async Task<ActionResult> GetAsync([FromQuery] string filter, int top = 10)
         {
-            var result = await _unitOfWork.EnfermedadRepository.FilterAsync();
+            var result = await _unitOfWork.EnfermedadRepository.FilterAsync(top, filter);
             return new JsonResult(result);
         }
 
