@@ -20,8 +20,13 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
-                var numItem = _db.OrdenesMedica.Where(x => x.NotaMedicaId.Equals(model.NotaMedicaId)).Select(x => x.NumItem).Max();
-                model.NumItem = (numItem > 0) ? numItem++ : 1;
+                int num = 0;
+                var numItems = await _db.Diagnosticos.Where(x => x.NotaMedicaId.Equals(model.NotaMedicaId)).Select(x => x.NumItem).ToListAsync();
+                if(numItems.Count > 0)
+                {
+                    num = numItems.Max();
+                }
+                model.NumItem = (num > 0) ? ++num : 1;
                 model.CreatedAt = DateTime.Now;
 
                 await _db.OrdenesMedica.AddAsync(model);
@@ -83,12 +88,12 @@ namespace xmedicalehr.api.Repositories
             return objList;
         }
 
-        public async Task<object> FindByIdAsync(string notaMedicaId, int numItem)
+        public async Task<object> FindByIdAsync(string atencionId, string notaMedicaId, int numItem)
         {
             object obj = null;
             try
             {
-                obj = await _db.OrdenesMedica.FindAsync(notaMedicaId, numItem);
+                obj = await _db.OrdenesMedica.FindAsync(atencionId, notaMedicaId, numItem);
             }
             catch (System.Exception ex)
             {

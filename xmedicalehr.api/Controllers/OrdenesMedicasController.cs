@@ -29,15 +29,15 @@ namespace xmedicalehr.api.Controllers
             return new JsonResult(result);
         }
 
-        [HttpGet("{notaMedicaId}/{numItem}")]
-        public async Task<ActionResult> GetAsync(string notaMedicaId, int numItem)
+        [HttpGet("{atencionId}/{notaMedicaId}/{numItem}")]
+        public async Task<ActionResult> GetAsync(string atencionId, string notaMedicaId, int numItem)
         {
-            if (string.IsNullOrEmpty(notaMedicaId) || string.IsNullOrWhiteSpace(notaMedicaId) || numItem == 0)
+            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
             {
                 return BadRequest();
             }
 
-            var result = await _unitOfWork.OrdenMedicaRepository.FindByIdAsync(notaMedicaId, numItem);
+            var result = await _unitOfWork.OrdenMedicaRepository.FindByIdAsync(atencionId, notaMedicaId, numItem);
             return new JsonResult(result);
         }
 
@@ -55,15 +55,15 @@ namespace xmedicalehr.api.Controllers
             return Ok();
         }
 
-        [HttpPut("{notaMedicaId}/{numItem}")]
-        public async Task<IActionResult> PutAsync(string notaMedicaId, int numItem, [FromBody] OrdenMedica model)
+        [HttpPut("{atencionId}/{notaMedicaId}/{numItem}")]
+        public async Task<IActionResult> PutAsync(string atencionId, string notaMedicaId, int numItem, [FromBody] OrdenMedica model)
         {
-            if (string.IsNullOrEmpty(notaMedicaId) || string.IsNullOrWhiteSpace(notaMedicaId) || numItem == 0)
+            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
             {
                 return BadRequest();
             }
 
-            var orden = (OrdenMedica) await _unitOfWork.OrdenMedicaRepository.FindByIdAsync(notaMedicaId, numItem);
+            var orden = (OrdenMedica) await _unitOfWork.OrdenMedicaRepository.FindByIdAsync(atencionId, notaMedicaId, numItem);
             if (orden == null )
             {
                 return NotFound();
@@ -95,15 +95,15 @@ namespace xmedicalehr.api.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{notaMedicaId}/{numItem}")]
-        public async Task<ActionResult> DeleteAsync(string notaMedicaId, int numItem, bool disable = true)
+        [HttpDelete("{atencionId}/{notaMedicaId}/{numItem}")]
+        public async Task<ActionResult> DeleteAsync(string atencionId, string notaMedicaId, int numItem, bool disable = true)
         {
-            if (string.IsNullOrEmpty(notaMedicaId) || string.IsNullOrWhiteSpace(notaMedicaId) || numItem == 0)
+            if (string.IsNullOrEmpty(atencionId) || string.IsNullOrEmpty(notaMedicaId) || numItem == 0)
             {
                 return BadRequest();
             }
 
-            var orden = (OrdenMedica) await _unitOfWork.OrdenMedicaRepository.FindByIdAsync(notaMedicaId, numItem);
+            var orden = (OrdenMedica) await _unitOfWork.OrdenMedicaRepository.FindByIdAsync(atencionId, notaMedicaId, numItem);
             if (orden == null )
             {
                 return NotFound();

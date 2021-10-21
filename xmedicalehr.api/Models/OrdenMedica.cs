@@ -3,6 +3,7 @@ namespace xmedicalehr.api.Models
 {
     public class OrdenMedica
     {
+        public string AntencionId { get; set; }
         public string NotaMedicaId { get; set; }
         public int NumItem { get; set; }
         public string TipoId { get; set; }
@@ -34,6 +35,7 @@ namespace xmedicalehr.api.Models
 
 
         //Navigations
+        public virtual AtencionMedica AntencionMedica { get; set; }
         public virtual NotaMedica NotaMedica { get; set; }
         public virtual Medicamento Medicamento { get; set; }
         public virtual Estudio Estudio { get; set; }

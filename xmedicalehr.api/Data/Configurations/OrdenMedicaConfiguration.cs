@@ -7,7 +7,10 @@ namespace xmedicalehr.api.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<OrdenMedica> builder)
         {
-            builder.HasKey(x => new { x.NotaMedicaId, x.NumItem });
+            builder.HasKey(x => new { x.AntencionId, x.NotaMedicaId, x.NumItem });
+
+            builder.Property(x => x.AntencionId)
+                .HasColumnType("varchar(255)");
 
             builder.Property(x => x.NotaMedicaId)
                 .HasColumnType("varchar(255)");
@@ -59,6 +62,8 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.Comentario)
                 .HasColumnType("mediumtext");
+
+
             
             builder.Property(x => x.Deleted)
                 .HasColumnType("tinyint");
@@ -82,6 +87,11 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("datetime");
 
 
+            builder.HasOne(x => x.AntencionMedica)
+                .WithMany(nm => nm.OrdenesMedicas)
+                .HasForeignKey(x => x.AntencionId)
+                .HasConstraintName("FK_OrdenesMedicas_AtencionesMedicas");
+            
             builder.HasOne(x => x.NotaMedica)
                 .WithMany(nm => nm.OrdenesMedicas)
                 .HasForeignKey(x => x.NotaMedicaId)

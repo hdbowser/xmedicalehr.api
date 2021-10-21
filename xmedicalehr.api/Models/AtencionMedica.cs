@@ -8,6 +8,7 @@ namespace xmedicalehr.api.Models
     {
         public AtencionMedica()
         {
+            OrdenesMedicas = new HashSet<OrdenMedica>();
             SolicitudesInterconsultas = new HashSet<SolicitudInterconsulta>();
             NotasMedicas = new HashSet<NotaMedica>();
             SignosVitales = new HashSet<SignosVitales>();
@@ -47,6 +48,7 @@ namespace xmedicalehr.api.Models
         public virtual User Creator { get; set; }
         public virtual Aseguradora Aseguradora { get; set; }
 
+        public virtual ICollection<OrdenMedica> OrdenesMedicas { get; set; }
         public virtual ICollection<SolicitudInterconsulta> SolicitudesInterconsultas { get; set; }
         public virtual ICollection<NotaMedica> NotasMedicas { get; set; }
         public virtual ICollection<SignosVitales> SignosVitales { get; set; }
