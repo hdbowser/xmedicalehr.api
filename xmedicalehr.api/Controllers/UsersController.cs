@@ -68,7 +68,7 @@ namespace xmedicalehr.api.Controllers
             claims.Add(new Claim(ClaimTypes.Actor, user.Name));
             claims.Add(new Claim(ClaimTypes.Email, user.Email));
 
-            return new JsonResult(_token.CreateToken(user, claims));
+            return new JsonResult(_token.CreateToken(claims));
         }
         
         [HttpPost]

@@ -27,7 +27,7 @@ namespace xmedicalehr.api.Repositories
                 {
                     num = numItems.Max();
                 }
-                model.NumItem = (num > 0) ? num++ : 1;
+                model.NumItem = (num > 0) ? ++num : 1;
                 model.CreatedAt = DateTime.Now;
                 await _db.SignosVitales.AddAsync(model);
             }

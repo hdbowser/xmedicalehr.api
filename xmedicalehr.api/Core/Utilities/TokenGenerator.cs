@@ -15,12 +15,12 @@ namespace xmedicalehr.api.Core.Utilities
         {
             _configuration = configuration;
         }
-        public string CreateToken(Account.User user, IList<Claim> claims)
+        public string CreateToken(IList<Claim> claims)
         {
             SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8
                 .GetBytes(_configuration.GetSection("Jwt:Key").Value));
             SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
-            Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor tokenDescriptor = new Microsoft.IdentityModel.Tokens.SecurityTokenDescriptor
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddDays(1),

@@ -21,8 +21,13 @@ namespace xmedicalehr.api.Repositories
         {
             try
             {
-                var numItem = _db.Diagnosticos.Where(x => x.NotaMedicaId.Equals(model.NotaMedicaId)).Select(x => x.NumItem).Max();
-                model.NumItem = (numItem > 0) ? numItem++ : 1;
+                int num = 0;
+                var numItems = await _db.Diagnosticos.Where(x => x.NotaMedicaId.Equals(model.NotaMedicaId)).Select(x => x.NumItem).ToListAsync();
+                if(numItems.Count > 0)
+                {
+                    num = numItems.Max();
+                }
+                model.NumItem = (num > 0) ? ++num : 1;
                 model.CreatedAt = DateTime.Now;
 
                 await _db.Diagnosticos.AddAsync(model);
@@ -74,6 +79,7 @@ namespace xmedicalehr.api.Repositories
                         x.NotaMedicaId,
                         x.NumItem,
                         x.Enfermedad.Descripcion,
+                        x.Enfermedad.Codigo,
                         x.Comentario,
                         x.Deleted,
                         x.CreatedAt,
@@ -82,7 +88,7 @@ namespace xmedicalehr.api.Repositories
                     })
                     .ToListAsync();
                 
-                if (string.IsNullOrEmpty(filter.NotaMedicaId) || string.IsNullOrWhiteSpace(filter.NotaMedicaId))
+                if (!string.IsNullOrEmpty(filter.NotaMedicaId))
                 {
                     objList.Where(x => x.NotaMedicaId.Equals(filter.NotaMedicaId));
                 }

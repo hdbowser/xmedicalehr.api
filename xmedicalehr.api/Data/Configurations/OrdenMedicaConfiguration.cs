@@ -13,7 +13,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(255)");
             
             builder.Property(x => x.NumItem)
-                .HasColumnType("int");
+                .HasColumnType("int(11)");
 
             builder.Property(x => x.TipoId)
                 .HasColumnType("varchar(45)");
@@ -31,7 +31,7 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("varchar(100)");
             
             builder.Property(x => x.Intervalo)
-                .HasColumnType("int");
+                .HasColumnType("int(11)");
 
             builder.Property(x => x.Tiempo)
                 .HasColumnType("varchar(45)");
@@ -40,10 +40,10 @@ namespace xmedicalehr.api.Data.Configurations
                 .HasColumnType("tinyint(1)");
             
             builder.Property(x => x.NumDiagnostico)
-                .HasColumnType("int");
+                .HasColumnType("int(11)");
             
             builder.Property(x => x.TiempoExpiracion)
-                .HasColumnType("int");
+                .HasColumnType("int(11)");
 
             builder.Property(x => x.Suspendido)
                 .HasColumnType("tinyint(1)");
