@@ -70,9 +70,6 @@ namespace xmedicalehr.api.Controllers
             }
 
             // diag.UpdatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            diag.NotaMedicaId = model.NotaMedicaId;
-            diag.NumItem = model.NumItem;
-            diag.EnfermedadId = model.EnfermedadId;
             diag.Comentario = model.Comentario;
 
             _unitOfWork.DiagnosticoRepository.Update(diag);

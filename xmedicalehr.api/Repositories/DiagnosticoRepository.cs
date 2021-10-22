@@ -78,6 +78,7 @@ namespace xmedicalehr.api.Repositories
                     .Select(x => new {
                         x.NotaMedicaId,
                         x.NumItem,
+                        x.Enfermedad.Id,
                         x.Enfermedad.Descripcion,
                         x.Enfermedad.Codigo,
                         x.Comentario,

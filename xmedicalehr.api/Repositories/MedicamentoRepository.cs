@@ -58,12 +58,17 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(int top = 10, string filter = "")
         {
             var objList = new List<object>();
             try
             {
-                objList = await _db.Medicamentos.Cast<object>().ToListAsync();
+                objList = await _db.Medicamentos
+                    .Where(x => x.Descripcion.Contains(filter) &&
+                        !x.Deleted
+                    ).Cast<object>()
+                    .Take(top)
+                    .ToListAsync();
             }
             catch (System.Exception ex)
             {

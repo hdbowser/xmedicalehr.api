@@ -22,7 +22,7 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> GetAsync([FromQuery] string filter, int top = 10)
+        public async Task<ActionResult> GetAsync([FromQuery]int top, string filter)
         {
             filter = filter ?? string.Empty;
             var result = await _unitOfWork.EnfermedadRepository.FilterAsync(top, filter);

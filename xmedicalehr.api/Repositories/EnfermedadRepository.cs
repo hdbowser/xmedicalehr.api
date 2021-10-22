@@ -57,7 +57,7 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<IList<object>> FilterAsync(int top, string filter = "")
+        public async Task<IList<object>> FilterAsync(int top = 10, string filter = "")
         {
             IList<object> objList = new List<object>();
             try
