@@ -18,16 +18,16 @@ namespace xmedicalehr.api.Data.Configurations
             builder.Property(x => x.NumItem)
                 .HasColumnType("int(11)");
 
-            builder.Property(x => x.TipoId)
+            builder.Property(x => x.Tipo)
                 .HasColumnType("varchar(45)");
 
             builder.Property(x => x.MedicamentoId)
                 .HasColumnType("varchar(255)");
 
-            builder.Property(x => x.Unidad)
+            builder.Property(x => x.UnidadDosis)
                 .HasColumnType("varchar(45)");
 
-            builder.Property(x => x.Cantiad)
+            builder.Property(x => x.CantidadDosis)
                 .HasColumnType("decimal(10,2");
 
             builder.Property(x => x.Via)
@@ -57,7 +57,7 @@ namespace xmedicalehr.api.Data.Configurations
             builder.Property(x => x.Fecha)
                 .HasColumnType("datetime");
 
-            builder.Property(x => x.Instruccciones)
+            builder.Property(x => x.Instrucciones)
                 .HasColumnType("mediumtext");
 
             builder.Property(x => x.Comentario)

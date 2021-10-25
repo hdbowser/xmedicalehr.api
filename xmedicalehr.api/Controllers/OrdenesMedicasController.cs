@@ -70,10 +70,10 @@ namespace xmedicalehr.api.Controllers
             }
 
             // orden.UpdatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            orden.TipoId = model.TipoId;
+            orden.Tipo = model.Tipo;
             orden.MedicamentoId = model.MedicamentoId;
-            orden.Unidad = model.Unidad;
-            orden.Cantiad = model.Cantiad;
+            orden.UnidadDosis = model.UnidadDosis;
+            orden.CantidadDosis = model.CantidadDosis;
             orden.Via = model.Via;
             orden.Intervalo = model.Intervalo;
             orden.Tiempo = model.Tiempo;

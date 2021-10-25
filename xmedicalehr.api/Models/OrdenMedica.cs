@@ -6,10 +6,10 @@ namespace xmedicalehr.api.Models
         public string AntencionId { get; set; }
         public string NotaMedicaId { get; set; }
         public int NumItem { get; set; }
-        public string TipoId { get; set; }
+        public string Tipo { get; set; }
         public string MedicamentoId { get; set; }
-        public string Unidad { get; set; }
-        public decimal Cantiad { get; set; }
+        public string UnidadDosis { get; set; }
+        public decimal CantidadDosis { get; set; }
         public string Via { get; set; }
         public int Intervalo { get; set; }
         public string Tiempo { get; set; }

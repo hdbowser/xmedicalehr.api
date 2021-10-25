@@ -68,10 +68,38 @@ namespace xmedicalehr.api.Repositories
 
         public async Task<List<object>> FilterAsync(string filter = "")
         {
-            var objList = new List<object>();
+            // var objList = new List<object>();
             try
             {
-                objList = await _db.OrdenesMedica.Cast<object>().ToListAsync();
+                var objList = _db.OrdenesMedica
+                    .Include(x => x.AntencionMedica)
+                    .Include(x => x.NotaMedica)
+                    .Include(x => x.Medicamento)
+                    .Include(x => x.Estudio)
+                    .Where(x => !x.Deleted)
+                    .Select(x => new {
+                        x.AntencionId,
+                        x.NotaMedicaId,
+                        x.NumItem,
+                        x.Tipo,
+                        x.MedicamentoId,
+                        x.UnidadDosis,
+                        x.CantidadDosis,
+                        x.Via,
+                        x.Intervalo,
+                        x.Tiempo,
+                        x.Monodosis,
+                        x.NumDiagnostico,
+                        x.TiempoExpiracion,
+                        x.Suspendido,
+                        x.EstudioId,
+                        x.Fecha,
+                        x.Instruccciones,
+                        x.Comentario
+
+                    });
+
+                    return await objList.Cast<object>().ToListAsync();
             }
             catch (System.Exception ex)
             {
@@ -85,7 +113,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return objList;
+            return new List<object>();
         }
 
         public async Task<object> FindByIdAsync(string atencionId, string notaMedicaId, int numItem)
