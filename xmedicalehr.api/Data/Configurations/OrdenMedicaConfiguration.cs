@@ -14,7 +14,10 @@ namespace xmedicalehr.api.Data.Configurations
 
             builder.Property(x => x.NotaMedicaId)
                 .HasColumnType("varchar(255)");
-            
+
+            builder.Property(x => x.EnfermedadId)
+                .HasColumnType("varchar(255)");
+
             builder.Property(x => x.NumItem)
                 .HasColumnType("int(11)");
 
@@ -96,6 +99,11 @@ namespace xmedicalehr.api.Data.Configurations
                 .WithMany(nm => nm.OrdenesMedicas)
                 .HasForeignKey(x => x.NotaMedicaId)
                 .HasConstraintName("FK_OrdenesMedica_NotasMedica");
+            
+            builder.HasOne(x => x.Enfermedad)
+                .WithMany(nm => nm.OrdenesMedicas)
+                .HasForeignKey(x => x.EnfermedadId)
+                .HasConstraintName("FK_OrdenesMedicas_Enfermedades");
 
             builder.HasOne(x => x.Medicamento)
                 .WithMany(nm => nm.OrdenesMedicas)

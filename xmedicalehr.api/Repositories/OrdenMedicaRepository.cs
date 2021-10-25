@@ -21,7 +21,7 @@ namespace xmedicalehr.api.Repositories
             try
             {
                 int num = 0;
-                var numItems = await _db.Diagnosticos.Where(x => x.NotaMedicaId.Equals(model.NotaMedicaId)).Select(x => x.NumItem).ToListAsync();
+                var numItems = await _db.OrdenesMedica.Where(x => x.AntencionId.Equals(model.AntencionId) && x.NotaMedicaId.Equals(model.NotaMedicaId)).Select(x => x.NumItem).ToListAsync();
                 if(numItems.Count > 0)
                 {
                     num = numItems.Max();
@@ -66,40 +66,42 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(string notaMedicaId = "")
         {
-            // var objList = new List<object>();
+            var objList = new List<object>();
             try
             {
-                var objList = _db.OrdenesMedica
+                objList = await _db.OrdenesMedica
                     .Include(x => x.AntencionMedica)
                     .Include(x => x.NotaMedica)
                     .Include(x => x.Medicamento)
                     .Include(x => x.Estudio)
-                    .Where(x => !x.Deleted)
+                    .Include(x => x.Enfermedad)
+                    .Where(x => !x.Deleted && x.NotaMedicaId.Equals(notaMedicaId))
                     .Select(x => new {
                         x.AntencionId,
                         x.NotaMedicaId,
                         x.NumItem,
                         x.Tipo,
                         x.MedicamentoId,
+                        NombreMedicamento = x.Medicamento.Descripcion,
                         x.UnidadDosis,
                         x.CantidadDosis,
                         x.Via,
                         x.Intervalo,
                         x.Tiempo,
                         x.Monodosis,
-                        x.NumDiagnostico,
+                        Diagnostico = x.Enfermedad.Descripcion,
                         x.TiempoExpiracion,
                         x.Suspendido,
                         x.EstudioId,
+                        NombreEstudio = x.Estudio.Descripcion,
                         x.Fecha,
-                        x.Instruccciones,
+                        x.Instrucciones,
                         x.Comentario
-
-                    });
-
-                    return await objList.Cast<object>().ToListAsync();
+                    })
+                    .Cast<object>()
+                    .ToListAsync();
             }
             catch (System.Exception ex)
             {
@@ -113,7 +115,7 @@ namespace xmedicalehr.api.Repositories
                     _log.Error(ex.InnerException.Message);
                 }
             }
-            return new List<object>();
+            return objList;
         }
 
         public async Task<object> FindByIdAsync(string atencionId, string notaMedicaId, int numItem)

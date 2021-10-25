@@ -23,9 +23,9 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> GetAsync()
+        public async Task<ActionResult> GetAsync(string notaMedicaId)
         {
-            var result = await _unitOfWork.OrdenMedicaRepository.FilterAsync();
+            var result = await _unitOfWork.OrdenMedicaRepository.FilterAsync(notaMedicaId);
             return new JsonResult(result);
         }
 
@@ -70,20 +70,20 @@ namespace xmedicalehr.api.Controllers
             }
 
             // orden.UpdatedBy = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            orden.Tipo = model.Tipo;
-            orden.MedicamentoId = model.MedicamentoId;
-            orden.UnidadDosis = model.UnidadDosis;
-            orden.CantidadDosis = model.CantidadDosis;
-            orden.Via = model.Via;
-            orden.Intervalo = model.Intervalo;
-            orden.Tiempo = model.Tiempo;
-            orden.Monodosis = model.Monodosis;
-            orden.NumDiagnostico = model.NumDiagnostico;
-            orden.TiempoExpiracion = model.TiempoExpiracion;
-            orden.Suspendido = model.Suspendido;
-            orden.EstudioId = model.EstudioId;
-            orden.Fecha = model.Fecha;
-            orden.Instruccciones = model.Instruccciones;
+            // orden.Tipo = model.Tipo;
+            // orden.MedicamentoId = model.MedicamentoId;
+            // orden.UnidadDosis = model.UnidadDosis;
+            // orden.CantidadDosis = model.CantidadDosis;
+            // orden.Via = model.Via;
+            // orden.Intervalo = model.Intervalo;
+            // orden.Tiempo = model.Tiempo;
+            // orden.Monodosis = model.Monodosis;
+            // orden.NumDiagnostico = model.NumDiagnostico;
+            // orden.TiempoExpiracion = model.TiempoExpiracion;
+            // orden.Suspendido = model.Suspendido;
+            // orden.EstudioId = model.EstudioId;
+            // orden.Fecha = model.Fecha;
+            // orden.Instrucciones = model.Instrucciones;
             orden.Comentario = model.Comentario;
             
             _unitOfWork.OrdenMedicaRepository.Update(orden);

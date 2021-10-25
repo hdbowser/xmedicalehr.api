@@ -6,6 +6,7 @@ namespace xmedicalehr.api.Models
         public string AntencionId { get; set; }
         public string NotaMedicaId { get; set; }
         public int NumItem { get; set; }
+        public string EnfermedadId { get; set; }
         public string Tipo { get; set; }
         public string MedicamentoId { get; set; }
         public string UnidadDosis { get; set; }
@@ -19,7 +20,7 @@ namespace xmedicalehr.api.Models
         public bool Suspendido { get; set; }
         public string EstudioId { get; set; }
         public DateTime Fecha { get; set; }
-        public string Instruccciones { get; set; }
+        public string Instrucciones { get; set; }
         public string Comentario { get; set; }
 
 
@@ -39,5 +40,6 @@ namespace xmedicalehr.api.Models
         public virtual NotaMedica NotaMedica { get; set; }
         public virtual Medicamento Medicamento { get; set; }
         public virtual Estudio Estudio { get; set; }
+        public virtual Enfermedad Enfermedad { get; set; }
     }
 }

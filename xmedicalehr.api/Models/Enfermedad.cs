@@ -7,6 +7,7 @@ namespace xmedicalehr.api.Models
         public Enfermedad()
         {
             Diagnosticos = new HashSet<Diagnostico>();
+            OrdenesMedicas = new HashSet<OrdenMedica>();
         }
         public string Id { get; set; }
         public string Catalogo { get; set; }
@@ -16,5 +17,6 @@ namespace xmedicalehr.api.Models
 
         // Vavigations
         public virtual ICollection<Diagnostico> Diagnosticos { get; set; }
+        public virtual ICollection<OrdenMedica> OrdenesMedicas { get; set; }
     }
 }
