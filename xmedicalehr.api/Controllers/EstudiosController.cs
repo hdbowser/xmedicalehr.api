@@ -21,9 +21,9 @@ namespace xmedicalehr.api.Controllers
         }
 
         [HttpGet("")]
-        public async Task<ActionResult> GetAsync()
+        public async Task<ActionResult> GetAsync([FromQuery]int top, string filter)
         {
-            var result = await _unitOfWork.EstudioRepository.FilterAsync();
+            var result = await _unitOfWork.EstudioRepository.FilterAsync(top, filter);
             return new JsonResult(result);
         }
 

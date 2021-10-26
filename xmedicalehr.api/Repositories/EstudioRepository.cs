@@ -57,12 +57,19 @@ namespace xmedicalehr.api.Repositories
             }
         }
 
-        public async Task<List<object>> FilterAsync(string filter = "")
+        public async Task<List<object>> FilterAsync(int top = 10, string filter = "")
         {
+            filter = filter ?? string.Empty;
+            top = (top > 0) ? top : 10;
+            
             var objList = new List<object>();
             try
             {
-                objList = await _db.Estudios.Cast<object>().ToListAsync();
+                objList = await _db.Estudios
+                    .Where(x => x.Descripcion.Contains(filter))
+                    .Cast<object>()
+                    .Take(top)
+                    .ToListAsync();
             }
             catch (System.Exception ex)
             {
