@@ -67,6 +67,10 @@ artifacts/
 # StyleCop
 StyleCopReport.xml
 
+
+# Directory by Visual Studio
+bin/
+
 # Files built by Visual Studio
 *_i.c
 *_p.c
@@ -261,6 +265,7 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
+*.sql
 
 # Business Intelligence projects
 *.rdl.data
